@@ -44,9 +44,17 @@ _**Note**_ : [Rabbit MQ](https://www.rabbitmq.com) is running with port `5672`.
 
 ### Interaction Diagram
 <img src="https://cloud.githubusercontent.com/assets/13286393/17678268/36026ab8-62eb-11e6-9725-ac3e5d5564b1.png"
-     border="0" width="50%" />
+     border="0" width="60%" />
 
-## Load Balancing
+## Client Side Load Balancing
+[Ribbon](https://spring.io/guides/gs/client-side-load-balancing) provides client-side load balancing. It will typically be used for **Gateway Routing** as well as with other **App to App** communication.
+<img src="https://cloud.githubusercontent.com/assets/13286393/17674082/df849a7e-62d8-11e6-9c20-c9254f338c4a.png"
+     border="0" width="60%" />
+Using the [Feign](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-feign) declaration, it is even easier to get a load-balanced invocation. Feign is an extremely handy short cuts that :
+- Attaches REST invocations to regular java functions, making it really simple to code REST consumers
+- Load balances the REST invocation
+- Hystrix-wraps the REST invocation (this can however be [disabled](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-feign-hystrix)).
+
 ## Actuator
 TODO
 - Provide some metrics
