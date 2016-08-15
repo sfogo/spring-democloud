@@ -1,0 +1,18 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+endpoints:
+  cors:
+    allowedOrigins: '*'
+    allowedMethods: POST, GET, OPTIONS, DELETE
+    maxAge: 3600
+    allowedHeaders: x-requested-with, authorization
+
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672

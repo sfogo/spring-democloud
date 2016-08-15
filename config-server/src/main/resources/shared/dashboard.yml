@@ -1,0 +1,14 @@
+turbine:
+  stream:
+    port: 7979
+
+server:
+  port: 7980
+
+management:
+  port: 7981
+
+
+
+demo:
+  message: Hi! My name is dashboard.

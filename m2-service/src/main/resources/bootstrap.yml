@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: m2-service
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true

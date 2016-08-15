@@ -1,0 +1,12 @@
+turbine:
+  stream:
+    port: 8989
+
+server:
+  port: 8990
+
+management:
+  port: 8991
+
+demo:
+  message: Hi! My name is turbine.

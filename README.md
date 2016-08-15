@@ -9,6 +9,9 @@ This is a simple (not [secured](http://projects.spring.io/spring-security), not 
 - [Turbine](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_turbine) application aggregates invocation statistics for calls that are hystrix-wrapped. These statistics are called hystrix streams (they are enabled provided that the application includes a dependency on [spring actuator](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_hystrix_metrics_stream)). [Hystrix dashboard](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_circuit_breaker_hystrix_dashboard) pulls aggregated metrics from Turbine for presentation.
 
 ## Application Summary
+|Application|Endpoints|Port|Actuator|Comment|
+|---|---|---|---|---|
+
 TODO : insert table, for each line
 - app name
 - main spring annotations, especially if server

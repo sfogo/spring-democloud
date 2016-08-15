@@ -1,0 +1,21 @@
+server:
+  port: 8888
+
+management:
+  context-path: /admin
+
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/shared
+  profiles:
+     active: native
+
+endpoints:
+  cors:
+    allowedOrigins: '*'
+    allowedMethods: POST, GET, OPTIONS, DELETE
+    maxAge: 3600
+    allowedHeaders: x-requested-with, authorization

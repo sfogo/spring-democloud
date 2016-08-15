@@ -1,0 +1,6 @@
+server:
+  port: 8092
+
+demo:
+  message: Hi! My name is m2.
+  resource: http://vachement.net/api/items
