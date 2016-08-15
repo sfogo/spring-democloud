@@ -51,10 +51,11 @@ _**Note**_ : [Rabbit MQ](https://www.rabbitmq.com) is running with port `5672`.
 <img src="https://cloud.githubusercontent.com/assets/13286393/17674082/df849a7e-62d8-11e6-9c20-c9254f338c4a.png"
      border="0" width="40%" />
 
-Using the [Feign](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-feign) declaration, it is even easier to get a load-balanced invocation. Feign is an extremely handy short cuts that :
+Using the [Feign](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-feign) declaration, it is even easier to get a load-balanced invocation. Feign is an extremely handy shortcut that :
 - Attaches REST invocations to regular java functions, making it really simple to code REST consumers
 - Load balances the REST invocation
 - Hystrix-wraps the REST invocation (this can however be [disabled](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-feign-hystrix)).
+In this demo, M1 and M2 [invocations](https://github.com/sfogo/spring-democloud/blob/master/m1-service/src/main/java/com/vnet/democloud/m1/Application.java) of M3 are feigned.
 
 ## Actuator
 TODO
