@@ -14,9 +14,9 @@ This is a simple (not [secured](http://projects.spring.io/spring-security), not 
 |[Configuration Server](config-server)|`/admin`|8888|No||
 |[Gateway](gateway)|`/gateway`|8099|Yes|`/gateway/m1` routed to M1 Service<br>`/gateway/m2` routed to M2 Service|
 |[Turbine](turbine)|`/`|8989<br>8991 (management port)|Yes||
-|[M1 Service](m1-service)|`/`|8091|Yes|`GET /things/{id}` service returns a JSON structure with same identifier as well as the total number of M1 invocations retrieved from M3|
+|[M1 Service](m1-service)|`/`|8091|Yes|`GET /things/{id}` endpoint returns a JSON structure with same identifier as well as the total number of M1 invocations retrieved from M3|
 |[M2 Service](m2-service)|`/`|8092|Yes|Same as M1 with M2 tag|
-|[M3 Service](m3-service)|`/`|8093|Yes|Counter service|
+|[M3 Service](m3-service)|`/`|8093|Yes|Counter service<br>`POST /counters/{tag}` increments counter tagged `{tag}`<br>`GET /counters/{tag}` gets counter value<br>`GET /counters` retrieves all counters|
 
 TODO : insert table, for each line
 - app name
