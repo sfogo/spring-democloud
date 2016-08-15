@@ -79,7 +79,7 @@ Spring Cloud stresses the importance of Spring [Actuator](https://spring.io/guid
 
 ### Dashboard
 <img src="https://cloud.githubusercontent.com/assets/13286393/17682185/c100f2c0-62fe-11e6-8297-9ea9a053a49a.png"
-     border="0" width="80%" />
+     border="0" width="90%" />
 
 ### Actuator Data
 * Deploy [actuator app](../spring-actuator-data)
