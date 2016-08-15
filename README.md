@@ -8,7 +8,8 @@ This is a simple (not [secured](http://projects.spring.io/spring-security), not 
 - Services exist in multiple instances. A consumer declared as a [Ribbon](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-ribbon) client gets client-side load balancing between registered instances (_for invocations that are declared load-balanced_).
 - [Turbine](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_turbine) application aggregates invocation statistics for calls that are hystrix-wrapped. These statistics are called hystrix streams (they are enabled provided that the application includes a dependency on [spring actuator](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_hystrix_metrics_stream)). [Hystrix dashboard](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_circuit_breaker_hystrix_dashboard) pulls aggregated metrics from Turbine for presentation.
 
-## Application Summary
+## Applications
+### Summary
 |Application|Context Path|Port|Actuator|Comment|
 |---|---|---|---|---|
 |[Configuration Server](config-server)|`/admin`|8888|No||
@@ -17,8 +18,20 @@ This is a simple (not [secured](http://projects.spring.io/spring-security), not 
 |[Eureka](eureka)|`/`|8761|Yes||
 |[Dashboard](dashboard)|`/`|7980|Yes|management port 7981|
 |[M1 Service](m1-service)|`/`|8091|Yes|`GET /things/{id}` endpoint returns a JSON structure with same identifier as well as the total number of M1 invocations retrieved from M3|
-|[M2 Service](m2-service)|`/`|8092|Yes|Same as M1 with M2 tag|
+|[M2 Service](m2-service)|`/`|8092|Yes|Same as above with M2 tag|
 |[M3 Service](m3-service)|`/`|8093|Yes|Counter service<br>`POST /counters/{tag}` increments counter<br>`GET /counters/{tag}` gets counter value<br>`GET /counters` retrieves all counters|
+|[Rabbit MQ](https://www.rabbitmq.com)|n/a|5672|n/a||
+### Main Spring annotations
+|Application|Annotations|Comment|
+|---|---|---|
+|[Configuration Server](config-server)|||
+|[Gateway](gateway)|||
+|[Turbine](turbine)|||
+|[Eureka](eureka)|||
+|[Dashboard](dashboard)|||
+|[M1 Service](m1-service)|||
+|[M2 Service](m2-service)|||
+|[M3 Service](m3-service)|||
 
 TODO : insert table, for each line
 - app name
