@@ -1,8 +1,7 @@
 # Spring Cloud Demo
 ## Overview
 This is a simple (not [secured](http://projects.spring.io/spring-security), not [containerized](https://docs.docker.com/engine/understanding-docker/)) demo that showcases a possible (if not typical) microservices [Spring Cloud](http://projects.spring.io/spring-cloud) landscape where :
-- Participants (i.e service instances) pull configuration values from a central location ([Configuration Server](https://cloud.spring.io/spring-cloud-config/)).
-- Participants self-register with a service registry ([Eureka](https://cloud.spring.io/spring-cloud-netflix/)) that enables other participants to discover them.
+- Participants (i.e service instances) pull configuration values from a central location ([Configuration Server](https://cloud.spring.io/spring-cloud-config/)). Participants self-register with a service registry ([Eureka](https://cloud.spring.io/spring-cloud-netflix/)) that enables other participants to discover them.
 - A gateway ([Zuul](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_router_and_filter_zuul)) publicly exposes some of the services. Zuul provides generic routing and filtering [capabilities](http://techblog.netflix.com/2013/06/announcing-zuul-edge-service-in-cloud.html).
 - Service availability is controlled using the [circuit breaker](http://martinfowler.com/bliki/CircuitBreaker.html) pattern whose implementation is [Hystrix](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_circuit_breaker_hystrix_clients)
 - Services exist in multiple instances. A consumer declared as a [Ribbon](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-ribbon) client gets client-side load balancing between registered instances (_for invocations that are declared load-balanced_).
@@ -20,8 +19,10 @@ This is a simple (not [secured](http://projects.spring.io/spring-security), not 
 |[M1 Service](m1-service)|`/`|8091|Yes|`GET /things/{id}` endpoint returns a JSON structure with same identifier as well as the total number of M1 invocations retrieved from M3|
 |[M2 Service](m2-service)|`/`|8092|Yes|Same as above with M2 tag|
 |[M3 Service](m3-service)|`/`|8093|Yes|Counter service<br>`POST /counters/{tag}` increments counter<br>`GET /counters/{tag}` gets counter value<br>`GET /counters` retrieves all counters|
-|[Rabbit MQ](https://www.rabbitmq.com)|n/a|5672|n/a||
-### Spring server annotations
+
+_**Note**_ : |[Rabbit MQ](https://www.rabbitmq.com) is running with port `5672`.
+
+### Application level annotations
 * All applications use `@SpringBootApplication`.
 * Applications that register with Eureka use `@EnableDiscoveryClient`.
 
