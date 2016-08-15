@@ -75,11 +75,11 @@ Spring Cloud stresses the importance of Spring [Actuator](https://spring.io/guid
 ## Examples and Screen Shots
 ### Eureka
 <img src="https://cloud.githubusercontent.com/assets/13286393/17682183/c0ee86f8-62fe-11e6-992e-f5fa1ea591f0.png"
-     border="0" width="40%" />
+     border="0" width="80%" />
 
 ### Dashboard
 <img src="https://cloud.githubusercontent.com/assets/13286393/17682185/c100f2c0-62fe-11e6-8297-9ea9a053a49a.png"
-     border="0" width="40%" />
+     border="0" width="80%" />
 
 ### Actuator Data
 * Deploy [actuator app](../spring-actuator-data)
