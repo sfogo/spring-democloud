@@ -82,12 +82,16 @@ Spring Cloud stresses the importance of Spring [Actuator](https://spring.io/guid
      border="0" width="40%" />
 
 ### Actuator Data
-Deploy [actuator app](../spring-actuator-data)
-``
+* Deploy [actuator app](../spring-actuator-data)
+```
 mvn package
 java -jar target/dependency/webapp-runner.jar --port 7070 target/gs-actuator-service-0.1.0
-``
-Go to `localhost:7070/app/actuate/index.html` (credentials are config / config) and change the actuator URL to one of the demo apps (for instance `http://localhost:8092`)
+```
+* Go to `localhost:7070/app/actuate/index.html` (credentials are config / config) and change the actuator URL to one of the demo apps (for instance `http://localhost:8092`)  
 <img src="https://cloud.githubusercontent.com/assets/13286393/17682184/c0ef47b4-62fe-11e6-8d04-64282f332ad1.png"
-     border="0" width="40%" />
-
+     border="0" width="80%" />
+* Environment  
+<img src="https://cloud.githubusercontent.com/assets/13286393/17682182/c0ecd52e-62fe-11e6-831e-c5eaa9388fb2.png"
+     border="0" width="80%" />
+<img src="https://cloud.githubusercontent.com/assets/13286393/17682181/c0e9bbd2-62fe-11e6-80ca-15d57a10e0d4.png"
+     border="0" width="80%" />
