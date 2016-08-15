@@ -55,9 +55,19 @@ Using the [Feign](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#s
 - Attaches REST invocations to regular java functions, making it really simple to code REST consumers
 - Load balances the REST invocation
 - Hystrix-wraps the REST invocation (this can however be [disabled](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-feign-hystrix)).
+
 In this demo, M1 and M2 [invocations](https://github.com/sfogo/spring-democloud/blob/master/m1-service/src/main/java/com/vnet/democloud/m1/Application.java) of M3 are feigned.
 
 ## Actuator
-TODO
-- Provide some metrics
-- Give some screen shots samples using spring-actuator demo app
+Spring Cloud stresses the importance of Spring [Actuator](https://spring.io/guides/gs/actuator-service) endpoints as most participants must have them enabled to participate fully (especially for Hystrix streams). It also makes you realize the extent of Spring configurability. Here are some stats (pulled from using the [actuator demo app](../spring-actuator-data)) for demo services that have almost no customization.
+
+|Application|# of env props|# of config props|# of metrics|
+|---|---|---|---|
+|[Configuration Server](config-server)|149|262|37|
+|[Gateway](gateway)|165|365|91|
+|[Turbine](turbine)|159|380|135|
+|[Eureka](eureka)|159|412|126|
+|[Dashboard](dashboard)|159|398|82|
+|[M1 Service](m1-service)|156|412|264|
+|[M2 Service](m2-service)|156|412|264|
+|[M3 Service](m3-service)|155|328|90|
