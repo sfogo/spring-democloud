@@ -43,8 +43,8 @@ _**Note**_ : [Rabbit MQ](https://www.rabbitmq.com) is running with port `5672`.
 |[M3 Service](m3-service)|`@RestController`|
 
 ### Interaction Diagram
-<img src="https://cloud.githubusercontent.com/assets/13286393/17678024/4bbb281e-62ea-11e6-8030-1c891ebf5547.png"
-     border="0" width="80%" />
+<img src="https://cloud.githubusercontent.com/assets/13286393/17678268/36026ab8-62eb-11e6-9725-ac3e5d5564b1.png"
+     border="0" width="50%" />
 
 ## Load Balancing
 ## Actuator
