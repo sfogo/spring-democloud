@@ -21,17 +21,21 @@ This is a simple (not [secured](http://projects.spring.io/spring-security), not 
 |[M2 Service](m2-service)|`/`|8092|Yes|Same as above with M2 tag|
 |[M3 Service](m3-service)|`/`|8093|Yes|Counter service<br>`POST /counters/{tag}` increments counter<br>`GET /counters/{tag}` gets counter value<br>`GET /counters` retrieves all counters|
 |[Rabbit MQ](https://www.rabbitmq.com)|n/a|5672|n/a||
-### Main Spring annotations
-|Application|Annotations|Comment|
-|---|---|---|
-|[Configuration Server](config-server)|||
-|[Gateway](gateway)|||
-|[Turbine](turbine)|||
-|[Eureka](eureka)|||
-|[Dashboard](dashboard)|||
-|[M1 Service](m1-service)|||
-|[M2 Service](m2-service)|||
-|[M3 Service](m3-service)|||
+### Spring server annotations
+* All applications use `@SpringBootApplication`.
+* Applications that register with Eureka use `@EnableDiscoveryClient`.
+|Application|Annotations|
+|---|---|
+|[Configuration Server](config-server)|`@EnableConfigServer`|
+|[Gateway](gateway)|`@EnableZuulProxy`|
+|[Turbine](turbine)|`@EnableTurbineStream`|
+|[Eureka](eureka)|`@EnableEurekaServer`|
+|[Dashboard](dashboard)|`@EnableHystrixDashboard`<br>`@EnableTurbineStream`|
+|[M1 Service](m1-service)|`@EnableCircuitBreaker` : some calls are wrapped with `@HystrixCommand` \
+`@EnableFeignClients` : invocations of M3 are feigned with `@FeignClient("m3-service")` \
+`@RestController` : regular REST controlling|
+|[M2 Service](m2-service)|Same as M1|
+|[M3 Service](m3-service)||
 
 TODO : insert table, for each line
 - app name
