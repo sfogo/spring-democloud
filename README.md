@@ -21,7 +21,7 @@ This is a simple (not [secured](http://projects.spring.io/spring-security), not 
 |[Turbine](turbine)|`/`|8989|Yes|management port 8991|
 |[Eureka](eureka)|`/`|8761|Yes||
 |[Dashboard](dashboard)|`/`|7980|Yes|management port 7981|
-|[M1 Service](m1-service)|`/`|8091|Yes|`GET /things/{id}` endpoint returns a JSON structure with same identifier as well as the total number of M1 invocations retrieved from M3|
+|[M1 Service](m1-service)|`/`|8091|Yes|`GET /items/{id}` endpoint returns a JSON structure with same identifier as well as the total number of M1 invocations retrieved from M3|
 |[M2 Service](m2-service)|`/`|8092|Yes|Same as above with M2 tag|
 |[M3 Service](m3-service)|`/`|8093|Yes|Counter service<br>`POST /counters/{tag}` increments counter<br>`GET /counters/{tag}` gets counter value<br>`GET /counters` retrieves all counters|
 
@@ -42,6 +42,11 @@ _**Note**_ : [Rabbit MQ](https://www.rabbitmq.com) is running with port `5672`.
 |[M2 Service](m2-service)|Same as M1|
 |[M3 Service](m3-service)|`@RestController`|
 
+### Interaction Diagram
+<img src="https://cloud.githubusercontent.com/assets/13286393/17678024/4bbb281e-62ea-11e6-8030-1c891ebf5547.png"
+     border="0" width="80%" />
+
+## Load Balancing
 ## Actuator
 TODO
 - Provide some metrics
