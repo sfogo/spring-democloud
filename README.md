@@ -32,17 +32,9 @@ This is a simple (not [secured](http://projects.spring.io/spring-security), not 
 |[Turbine](turbine)|`@EnableTurbineStream`|
 |[Eureka](eureka)|`@EnableEurekaServer`|
 |[Dashboard](dashboard)|`@EnableHystrixDashboard`<br>`@EnableTurbineStream`|
-|[M1 Service](m1-service)|`@EnableCircuitBreaker` : some calls are wrapped with `@HystrixCommand` \
-`@EnableFeignClients` : invocations of M3 are feigned with `@FeignClient("m3-service")` \
-`@RestController` : regular REST controlling|
+|[M1 Service](m1-service)|`@EnableCircuitBreaker` : some calls are wrapped with `@HystrixCommand`<br>`@EnableFeignClients` : invocations of M3 are feigned with `@FeignClient("m3-service")`<br>`@RestController` : regular REST controlling|
 |[M2 Service](m2-service)|Same as M1|
-|[M3 Service](m3-service)||
-
-TODO : insert table, for each line
-- app name
-- main spring annotations, especially if server
-- ports
-- actuator yes / no
+|[M3 Service](m3-service)|`@RestController` : regular REST controlling|
 
 ## Actuator
 TODO
