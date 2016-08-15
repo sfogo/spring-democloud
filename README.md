@@ -24,6 +24,7 @@ This is a simple (not [secured](http://projects.spring.io/spring-security), not 
 ### Spring server annotations
 * All applications use `@SpringBootApplication`.
 * Applications that register with Eureka use `@EnableDiscoveryClient`.
+
 |Application|Annotations|
 |---|---|
 |[Configuration Server](config-server)|`@EnableConfigServer`|
