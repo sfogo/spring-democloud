@@ -12,11 +12,11 @@ This is a simple (not [secured](http://projects.spring.io/spring-security), not 
 |Application|Context Path|Port|Actuator|Comment|
 |---|---|---|---|---|
 |[Configuration Server](config-server)|`/admin`|8888|No||
+|[Gateway](gateway)|`/gateway`|8099|Yes||
+|[Turbine](turbine)|`/`|8989<br>8991 (management port)|Yes||
 |[M1 Service](m1-service)|`/`|8091|Yes||
 |[M2 Service](m2-service)|`/`|8092|Yes||
 |[M3 Service](m3-service)|`/`|8093|Yes|Counter service|
-|[Gateway](gateway)|`/gateway`|8099|Yes||
-|[Turbine](turbine)|`/`|8989<br>8991 (management port)|Yes||
 
 TODO : insert table, for each line
 - app name
