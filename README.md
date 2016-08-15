@@ -47,9 +47,10 @@ _**Note**_ : [Rabbit MQ](https://www.rabbitmq.com) is running with port `5672`.
      border="0" width="60%" />
 
 ## Client Side Load Balancing
-[Ribbon](https://spring.io/guides/gs/client-side-load-balancing) provides client-side load balancing. It will typically be used for **Gateway Routing** as well as with other **App to App** communication.
+[Ribbon](https://spring.io/guides/gs/client-side-load-balancing) provides client-side load balancing. It will typically be used for **Gateway Routing** as well as with other **App to App** communication.  
 <img src="https://cloud.githubusercontent.com/assets/13286393/17674082/df849a7e-62d8-11e6-9c20-c9254f338c4a.png"
-     border="0" width="60%" />
+     border="0" width="40%" />
+
 Using the [Feign](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-feign) declaration, it is even easier to get a load-balanced invocation. Feign is an extremely handy short cuts that :
 - Attaches REST invocations to regular java functions, making it really simple to code REST consumers
 - Load balances the REST invocation
