@@ -12,10 +12,10 @@ This is a simple (not [secured](http://projects.spring.io/spring-security), not 
 |Application|Context Path|Port|Actuator|Comment|
 |---|---|---|---|---|
 |[Configuration Server](config-server)|`/admin`|8888|No||
-|[Gateway](gateway)|`/gateway`|8099|Yes||
+|[Gateway](gateway)|`/gateway`|8099|Yes|`/gateway/m1` routed to M1 Service<br>`/gateway/m2` routed to M2 Service|
 |[Turbine](turbine)|`/`|8989<br>8991 (management port)|Yes||
-|[M1 Service](m1-service)|`/`|8091|Yes||
-|[M2 Service](m2-service)|`/`|8092|Yes||
+|[M1 Service](m1-service)|`/`|8091|Yes|`GET /things/{id}` service returns a JSON structure with same identifier as well as the total number of M1 invocations retrieved from M3|
+|[M2 Service](m2-service)|`/`|8092|Yes|Same as M1 with M2 tag|
 |[M3 Service](m3-service)|`/`|8093|Yes|Counter service|
 
 TODO : insert table, for each line
