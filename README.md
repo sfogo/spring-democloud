@@ -59,7 +59,7 @@ Using the [Feign](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#s
 In this demo, M1 and M2 [invocations](https://github.com/sfogo/spring-democloud/blob/master/m1-service/src/main/java/com/vnet/democloud/m1/Application.java) of M3 are feigned.
 
 ## Actuator
-Spring Cloud stresses the importance of Spring [Actuator](https://spring.io/guides/gs/actuator-service) endpoints as most participants must have them enabled to participate fully (especially for Hystrix streams). It also makes you realize the extent of Spring configurability. Here are some stats (pulled from using the [actuator demo app](../spring-actuator-data)) for demo services that have almost no customization.
+Spring Cloud stresses the importance of Spring [Actuator](https://spring.io/guides/gs/actuator-service) endpoints as most participants must have them enabled to participate fully (especially for Hystrix streams). It also shows the extent of Spring configurability. Here are some stats (pulled from using the [actuator demo app](../spring-actuator-data)) for demo services that have almost no customization.
 
 |Application|# of env props|# of config props|# of metrics|
 |---|---|---|---|
@@ -71,3 +71,23 @@ Spring Cloud stresses the importance of Spring [Actuator](https://spring.io/guid
 |[M1 Service](m1-service)|156|412|264|
 |[M2 Service](m2-service)|156|412|264|
 |[M3 Service](m3-service)|155|328|90|
+
+## Examples and Screen Shots
+### Eureka
+<img src="https://cloud.githubusercontent.com/assets/13286393/17682183/c0ee86f8-62fe-11e6-992e-f5fa1ea591f0.png"
+     border="0" width="40%" />
+
+### Dashboard
+<img src="https://cloud.githubusercontent.com/assets/13286393/17682185/c100f2c0-62fe-11e6-8297-9ea9a053a49a.png"
+     border="0" width="40%" />
+
+### Actuator Data
+Deploy [actuator app](../spring-actuator-data)
+``
+mvn package
+java -jar target/dependency/webapp-runner.jar --port 7070 target/gs-actuator-service-0.1.0
+``
+Go to `localhost:7070/app/actuate/index.html` (credentials are config / config) and change the actuator URL to one of the demo apps (for instance `http://localhost:8092`)
+<img src="https://cloud.githubusercontent.com/assets/13286393/17682184/c0ef47b4-62fe-11e6-8d04-64282f332ad1.png"
+     border="0" width="40%" />
+
