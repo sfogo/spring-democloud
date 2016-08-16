@@ -12,7 +12,7 @@ m1ItemsPath = "/gateway/m1/items"
 m2ItemsPath = "/gateway/m2/items"
 
 # =====================
-# Post color events
+# Generate Traffic
 # =====================
 def feed(count):
     for e in range(0,count):
@@ -25,7 +25,7 @@ def feed(count):
             getResource(gateway, m2ItemsPath, "z%20t")
 
 # =====================
-# Post one color event
+# Get Resource
 # =====================
 def getResource(host,path,resource):
     c = http.client.HTTPConnection(host)
