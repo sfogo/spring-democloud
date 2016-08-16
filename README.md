@@ -4,7 +4,7 @@
   - [Summary](#summary)
   - [Application level annotations](#application-level-annotations)
   - [Interaction diagram](##interaction-diagram)
-  - [Client side load balancing](#client-side-load-balancing)
+- [Client side load balancing](#client-side-load-balancing)
 - [Actuator](#actuator)
 - [Examples and screen shots](#examples-and-screen-shots)
   - [Eureka](#eureka)
@@ -86,6 +86,7 @@ Spring Cloud stresses the importance of Spring [Actuator](https://spring.io/guid
 
 ## Examples and Screen Shots
 ### Eureka
+* Go to Dashboard `http://localhost:8761`  
 <img src="https://cloud.githubusercontent.com/assets/13286393/17682183/c0ee86f8-62fe-11e6-992e-f5fa1ea591f0.png"
      border="0" width="80%" />
 
