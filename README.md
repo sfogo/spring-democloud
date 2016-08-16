@@ -1,4 +1,16 @@
 # Spring Cloud Demo
+- [Overview](#overview)
+- [Applications](#applications)
+  - [Summary](#summary)
+  - [Application level annotations](#application-level-annotations)
+  - [Interaction diagram](##interaction-diagram)
+  - [Client side load balancing](#client-side-load-balancing)
+- [Actuator](#actuator)
+- [Examples and screen shots](#examples-and-screen-shots)
+  - [Eureka](#eureka)
+  - [Generate traffic and watch dashboard](#dashboard)
+  - [View Actuator Data](#actuator-data)
+
 ## Overview
 This is a simple (not [secured](http://projects.spring.io/spring-security), not [containerized](https://docs.docker.com/engine/understanding-docker/)) demo that showcases a possible (if not typical) microservices [Spring Cloud](http://projects.spring.io/spring-cloud) landscape where :
 - Participants (i.e service instances) pull configuration values from a central location ([Configuration Server](https://cloud.spring.io/spring-cloud-config/)). Participants self-register with a service registry ([Eureka](https://cloud.spring.io/spring-cloud-netflix/)) that enables other participants to discover them.  
@@ -83,9 +95,10 @@ Spring Cloud stresses the importance of Spring [Actuator](https://spring.io/guid
 * Generate some traffic from your browser
   * `http://localhost:8099/gateway/m1/items/123`
   * `http://localhost:8099/gateway/m2/items/xyzA`
-* Generate some traffic with this [Python Script](generate-traffic.py)
+* Generate some traffic with this [Python3 Script](generate-traffic.py)
   * `generate-traffic.py 100`
-  * It generates an Hystrix fallback every 7 calls (hence the over 10% error rate the dasboard displays)  
+  * It generates an Hystrix fallback every 7 calls (hence the over 10% error rate the dasboard displays).
+
 <img src="https://cloud.githubusercontent.com/assets/13286393/17682185/c100f2c0-62fe-11e6-8297-9ea9a053a49a.png"
      border="0" width="90%" />
 
