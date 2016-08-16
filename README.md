@@ -59,7 +59,7 @@ Using the [Feign](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#s
 In this demo, M1 and M2 [invocations](https://github.com/sfogo/spring-democloud/blob/master/m1-service/src/main/java/com/vnet/democloud/m1/Application.java) of M3 are feigned.
 
 ## Actuator
-Spring Cloud stresses the importance of Spring [Actuator](https://spring.io/guides/gs/actuator-service) endpoints as most participants must have them enabled to participate fully (especially for Hystrix streams). It also shows the extent of Spring configurability. Here are some stats (pulled from using the [actuator demo app](../spring-actuator-data)) for demo services that have almost no customization.
+Spring Cloud stresses the importance of Spring [Actuator](https://spring.io/guides/gs/actuator-service) endpoints as most participants must have them enabled to participate fully (especially for Hystrix streams). It also shows the extent of Spring configurability. Here are some stats (pulled from using the [actuator demo app](https://github.com/sfogo/spring-actuator-data)) for demo services that have almost no customization.
 
 |Application|# of env props|# of config props|# of metrics|
 |---|---|---|---|
@@ -78,11 +78,19 @@ Spring Cloud stresses the importance of Spring [Actuator](https://spring.io/guid
      border="0" width="80%" />
 
 ### Dashboard
+* Go to Dashboard `http://localhost:7980/hystrix`
+* Monitor Turbine stream `http://localhost:8989`
+* Generate some traffic from your browser
+  * `http://localhost:8099/gateway/m1/items/123`
+  * `http://localhost:8099/gateway/m2/items/xyzA`
+* Generate some traffic with this [Python Script](generate-traffic.py)
+  * `generate-traffic.py 100`
+  * It generates an Hystrix fallback every 7 calls (hence the over 10% error rate the dasboard displays)  
 <img src="https://cloud.githubusercontent.com/assets/13286393/17682185/c100f2c0-62fe-11e6-8297-9ea9a053a49a.png"
      border="0" width="90%" />
 
 ### Actuator Data
-* Deploy [actuator app](../spring-actuator-data)  
+* Deploy [actuator app](https://github.com/sfogo/spring-actuator-data)  
 `mvn package`  
 `java -jar target/dependency/webapp-runner.jar --port 7070 target/gs-actuator-service-0.1.0`
 * Go to `http://localhost:7070/app/actuate/index.html` (credentials are config / config) and change the actuator URL to one of the demo apps (for instance `http://localhost:8092` or `http://localhost:8099/gateway`)  
