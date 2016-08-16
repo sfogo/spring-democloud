@@ -33,7 +33,7 @@ This is a simple (not [secured](http://projects.spring.io/spring-security), not 
 |[Turbine](turbine)|`/`|8989|Yes|management port 8991|
 |[Eureka](eureka)|`/`|8761|Yes||
 |[Dashboard](dashboard)|`/`|7980|Yes|management port 7981|
-|[M1 Service](m1-service)|`/`|8091|Yes|`GET /items/{id}` endpoint returns a JSON structure with same identifier as well as the total number of M1 invocations retrieved from M3|
+|[M1 Service](m1-service)|`/`|8091|Yes|`GET /items/{id}` endpoint echoes the same identifier along with the total number of M1 invocations retrieved from M3|
 |[M2 Service](m2-service)|`/`|8092|Yes|Same as above with M2 tag|
 |[M3 Service](m3-service)|`/`|8093|Yes|Counter service<br>`POST /counters/{tag}` increments counter<br>`GET /counters/{tag}` gets counter value<br>`GET /counters` retrieves all counters|
 
@@ -85,17 +85,24 @@ Spring Cloud stresses the importance of Spring [Actuator](https://spring.io/guid
 |[M3 Service](m3-service)|155|328|90|
 
 ## Examples and Screen Shots
+### Run it all locally
+_TODO_
+
 ### Eureka
 * Go to Dashboard `http://localhost:8761`  
 <img src="https://cloud.githubusercontent.com/assets/13286393/17682183/c0ee86f8-62fe-11e6-992e-f5fa1ea591f0.png"
      border="0" width="80%" />
+* Other REST endpoints are available:
+  * Get all apps : `http://localhost:8761/eureka/apps`
+  * Get one app : `http://localhost:8761/eureka/apps/M3-SERVICE`
+  * See Eureka [operations](https://github.com/Netflix/eureka/wiki/Eureka-REST-operations) (_but unsure which ones are available through Spring_).
 
 ### Dashboard
 * Go to Dashboard `http://localhost:7980/hystrix`
 * Monitor Turbine stream `http://localhost:8989`
 * Generate some traffic from your browser
   * `http://localhost:8099/gateway/m1/items/123`
-  * `http://localhost:8099/gateway/m2/items/xyzA`
+  * `http://localhost:8099/gateway/m2/items/xyz`
 * Generate some traffic with this [Python3 Script](generate-traffic.py)
   * `generate-traffic.py 100`
   * It generates an Hystrix fallback every 7 calls (hence the over 10% error rate the dasboard displays).
