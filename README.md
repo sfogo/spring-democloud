@@ -87,7 +87,7 @@ Spring Cloud emphasizes the importance of Spring [Actuator](https://spring.io/gu
 ## Examples and Screen Shots
 ### Run it all locally
 * One option is to `cd` to each application and start them individually with `mvn spring-boot:run`, making sure you start with `config-server` (for fail-fast reasons explained in the [overview](#overview)), then on to `eureka` and other applications.
-* You can also use the [run all](#TODO) script. It does some _rustic_ waiting and is clueless about start failures. In a real deployment you should rely on options provided by your envoronment (for instance a combination of Spring `fail fast` and Docker `restart always` options).
+* You can also use this [run all](#TODO) script. It does some _rustic_ waiting and is clueless about start failures. In a real deployment you rely on options provided by your environment (_for instance a combination of Spring `fail fast` and Docker `restart always` options_).
 
 ### Eureka
 * Go to Dashboard `http://localhost:8761`  
