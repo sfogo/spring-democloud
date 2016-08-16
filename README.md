@@ -7,6 +7,7 @@
 - [Client side load balancing](#client-side-load-balancing)
 - [Actuator](#actuator)
 - [Examples and screen shots](#examples-and-screen-shots)
+  - [Run it all locally](#run-it-all-locally)
   - [Eureka](#eureka)
   - [Generate traffic and watch dashboard](#dashboard)
   - [View Actuator Data](#actuator-data)
@@ -92,7 +93,7 @@ _TODO_
 * Go to Dashboard `http://localhost:8761`  
 <img src="https://cloud.githubusercontent.com/assets/13286393/17682183/c0ee86f8-62fe-11e6-992e-f5fa1ea591f0.png"
      border="0" width="80%" />
-* Other REST endpoints are available:
+* Some REST endpoints are available:
   * Get all apps : `http://localhost:8761/eureka/apps`
   * Get one app : `http://localhost:8761/eureka/apps/M3-SERVICE`
   * See Eureka [operations](https://github.com/Netflix/eureka/wiki/Eureka-REST-operations) (_but unsure which ones are available through Spring_).
