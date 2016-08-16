@@ -21,3 +21,8 @@ zuul:
         path: /m2/**
         serviceId: m2-service
         sensitiveHeaders:
+
+    m3-service:
+        path: /m3/**
+        serviceId: m3-service
+        sensitiveHeaders:
