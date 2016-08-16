@@ -87,7 +87,28 @@ Spring Cloud emphasizes the importance of Spring [Actuator](https://spring.io/gu
 ## Examples and Screen Shots
 ### Run it all locally
 * One option is to `cd` to each application and start them individually with `mvn spring-boot:run`, making sure you start with `config-server` (for fail-fast reasons explained in the [overview](#overview)), then on to `eureka` and other applications.
-* You can also use this [run all](#TODO) script. It does some _rustic_ waiting and is clueless about start failures. In a real deployment you rely on options provided by your environment (_for instance a combination of Spring `fail fast` and Docker `restart always` options_).
+* You can also use this [run all](#TODO) script. It does some _rustic_ waiting and is clueless (other than not starting the next service) about start failures. In a real deployment you rely on options provided by your environment (for instance a combination of Spring `fail fast` and Docker `restart always` options).  
+```
+$ ./run-all.sh 
+Starting config-server...
+config-server started PID:13325 Log:/tmp/democloud/config-server.pid.13325.txt
+Starting eureka...
+eureka started PID:13382 Log:/tmp/democloud/eureka.pid.13382.txt
+Starting m3-service...
+m3-service started PID:13483 Log:/tmp/democloud/m3-service.pid.13483.txt
+Starting m2-service...
+m2-service started PID:13576 Log:/tmp/democloud/m2-service.pid.13576.txt
+Starting m1-service...
+m1-service started PID:13649 Log:/tmp/democloud/m1-service.pid.13649.txt
+Starting gateway...
+gateway started PID:13754 Log:/tmp/democloud/gateway.pid.13754.txt
+Starting turbine...
+turbine started PID:13845 Log:/tmp/democloud/turbine.pid.13845.txt
+Starting dashboard...
+dashboard started PID:13926 Log:/tmp/democloud/dashboard.pid.13926.txt
+Done.
+You can shut it all down with : kill `cat /tmp/democloud/pids.txt`
+```
 
 ### Eureka
 * Go to Dashboard `http://localhost:8761`  
