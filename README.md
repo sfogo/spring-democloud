@@ -110,6 +110,10 @@ Done.
 You can shut it all down with : kill `cat /tmp/democloud/pids.txt`
 ```
 
+* **Note** : start rabbit MQ separately (port `5672`)  
+For instance on Ubuntu `sudo /etc/init.d/rabbitmq-server start`  
+Installation notes are [here](https://www.rabbitmq.com/download.html).
+
 ### Eureka
 * Go to Dashboard `http://localhost:8761`  
 <img src="https://cloud.githubusercontent.com/assets/13286393/17682183/c0ee86f8-62fe-11e6-992e-f5fa1ea591f0.png"
