@@ -11,7 +11,7 @@
   - [Eureka](#eureka)
   - [Configuration Server](#configuration-server)
   - [Generate traffic and watch dashboard](#dashboard)
-  - [Add instances and load balance](#add-an-m1-instance)
+  - [Add instances and load balance](#add-instances)
   - [View Actuator Data](#actuator-data)
 
 ## Overview
@@ -148,7 +148,8 @@ You can shut it all down with : kill `cat /tmp/democloud/pids.txt`
 <img src="https://cloud.githubusercontent.com/assets/13286393/17682185/c100f2c0-62fe-11e6-8297-9ea9a053a49a.png"
      border="0" width="90%" />
 
-### Add an M1 instance
+### Add instances
+#### M1 Service
 * M1 port (`server.port`) is acquired from Configuration Server and that cannot be bypassed unless you disable the bootstrap stage with `spring.cloud.bootstrap.enabled=false`. Once disabled, you can specify a different port (`8191` in this case) as well as other properties that M1 is expecting to see. Eureka and Rabbit MQ locations are provided (_it's actually superfluous because they are the default values anyway_). Start another M1 instance with port `8191` :
 ```
 cd m1-service  
@@ -188,6 +189,34 @@ curl http://localhost:8099/gateway/m1
 * Refresh Eureka `http://localhost:8761`. M1 is now multi-instances.  
 <img src="https://cloud.githubusercontent.com/assets/13286393/17723727/3d1b9728-63f1-11e6-8082-455215d96b59.png"
      border="0" width="80%" />
+
+#### M2 Service
+* Test file contains a JSON structure, value for `spring.application.json`
+```
+cd m2-service
+cat ../testing/m2-instance-at-8192.txt {
+  "demo":{"message":"M2 Service at port 8192","resource":"http://vachement.net/api/items"},
+  "eureka.client.serviceUrl.defaultZone":"http://localhost:8761/eureka/",
+  "server":{"port":8192}, 
+  "spring":{
+    "application":{"name":"m2-service"},
+    "rabbitmq":{"host":"localhost","port":5672},
+    "cloud.config.uri":"Not Applicable"
+  },
+  "endpoints":{"cors":{
+     "allowedOrigins":"*",
+     "allowedMethods":"POST, GET, OPTIONS, DELETE",
+     "maxAge":"3600",
+     "allowedHeaders":"x-requested-with, authorization"}
+  }
+}
+```
+* Flatten JSON structure (hence the sed and tr). Set value for `spring.application.json`
+```
+mvn spring-boot:run \
+  -Dspring.cloud.bootstrap.enabled=false \
+  -Dspring.application.json="`cat ../testing/m2-instance-at-8192.txt | sed 's/^[ \t]*//' | tr -d '\n'`"
+```
 
 ### Actuator Data
 * Deploy [actuator app](https://github.com/sfogo/spring-actuator-data)  
