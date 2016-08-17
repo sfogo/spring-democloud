@@ -31,7 +31,7 @@ In this demo, applications are configured to [fail fast](http://projects.spring.
 |Application|Context Path|Port|Comment|
 |---|---|---|---|
 |[Configuration Server](config-server)|`/`|8888|Management context path is `/admin`|
-|[Gateway](gateway)|`/gateway`|8099|Yes|`/gateway/m1` routed to M1 Service<br>`/gateway/m2` routed to M2 Service|
+|[Gateway](gateway)|`/gateway`|8099|Routes `/gateway/m1` to M1 Service<br>Routes `/gateway/m2` to M2 Service|
 |[Turbine](turbine)|`/`|8989|Management port 8991|
 |[Eureka](eureka)|`/`|8761||
 |[Dashboard](dashboard)|`/`|7980|Management port 7981|
