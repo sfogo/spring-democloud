@@ -10,6 +10,7 @@ tmpDir="/tmp/democloud"
 # Wait until started
 # ==================
 waitUntilStartedTag() {
+    touch $1
     tail $1 -n0 -F | while read line; do
         if [[ "$line" =~ "${STARTED_TAG}" ]]; then
             pkill -9 -P $$ tail
