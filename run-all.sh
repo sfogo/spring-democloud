@@ -17,28 +17,23 @@ waitUntilStartedTag() {
     done
 }
 
-# ==========================
-# Do not echo anything else!
-# ==========================
-springBootRun() {
-    local app=${1}
-    cd ${app}
-    mvn spring-boot:run > ${tmpDir}/${app}.pid.${BASHPID}.txt 2>&1 &
-    echo $! 
-    cd ..
-}
-
 # =================
 # Start Application
 # =================
 startApplication() {
-    app=${1}
+    local app=${1}
+    cd ${app}
+
     echo "Starting ${app}..."
-    pid=`springBootRun ${app}`
+    mvn spring-boot:run > ${tmpDir}/${app}.pid.${BASHPID}.txt 2>&1 &
+    pid=$!
     echo "${pid} " >> ${tmpDir}/pids.txt
+
     logFile="${tmpDir}/${app}.pid.${pid}.txt"
     waitUntilStartedTag "${logFile}"
     echo "${app} started PID:${pid} Log:${logFile}"
+
+    cd ..
 }
 
 # =================
