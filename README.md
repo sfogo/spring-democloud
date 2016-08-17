@@ -194,7 +194,8 @@ curl http://localhost:8099/gateway/m1
 * Test file contains a JSON structure, value for `spring.application.json`
 ```
 cd m2-service
-cat ../testing/m2-instance-at-8192.txt {
+cat ../testing/m2-instance-at-8192.txt
+{
   "demo":{"message":"M2 Service at port 8192","resource":"http://vachement.net/api/items"},
   "eureka.client.serviceUrl.defaultZone":"http://localhost:8761/eureka/",
   "server":{"port":8192}, 
@@ -216,6 +217,12 @@ cat ../testing/m2-instance-at-8192.txt {
 mvn spring-boot:run \
   -Dspring.cloud.bootstrap.enabled=false \
   -Dspring.application.json="`cat ../testing/m2-instance-at-8192.txt | sed 's/^[ \t]*//' | tr -d '\n'`"
+```
+* Check home endpoint
+```
+curl http://localhost:8192 
+{"counter":{"name":"m2-service","value":0},
+ "message":"M2 Service at port 8192","config.uri":"Not Applicable"}
 ```
 
 ### Actuator Data
