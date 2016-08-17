@@ -187,7 +187,7 @@ curl http://localhost:8099/gateway/m1
 ```
 * Refresh Eureka `http://localhost:8761`. M1 is now multi-instances.  
 <img src="https://cloud.githubusercontent.com/assets/13286393/17723727/3d1b9728-63f1-11e6-8082-455215d96b59.png"
-     border="0" width="60%" />
+     border="0" width="80%" />
 
 ### Actuator Data
 * Deploy [actuator app](https://github.com/sfogo/spring-actuator-data)  
