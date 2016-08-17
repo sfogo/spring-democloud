@@ -147,6 +147,42 @@ You can shut it all down with : kill `cat /tmp/democloud/pids.txt`
 <img src="https://cloud.githubusercontent.com/assets/13286393/17682185/c100f2c0-62fe-11e6-8297-9ea9a053a49a.png"
      border="0" width="90%" />
 
+### Add an M1 instance
+* M1 `server.port` is acquired from Configuration Server and that cannot be bypassed unless you disable the bootstrap stage, which is possible with `spring.cloud.bootstrap.enabled`. Once disabled, we can specify a different port (`8191` in this case) as well as other properties that M1 is expecting to see.
+* We have also specfied Eureka and Rabbit MQ locations (but it's actually superfluous because they are the default values anyway).
+* Start another M1 instance with port `8191`  
+```
+cd m1-service`  
+mvn spring-boot:run \
+  -Dspring.cloud.bootstrap.enabled=false \
+  -Ddemo.message='I am M1 at port 8191' \
+  -Ddemo.resource='http://vachement.net/api/items' \
+  -Dspring.cloud.config.uri='Not Applicable' \
+  -Dspring.application.name=m1-service \
+  -Deureka.client.serviceUrl.defaultZone='http://localhost:8761/eureka/' \
+  -Dspring.rabbitmq.host=localhost \
+  -Dspring.rabbitmq.port=5672 \
+  -Dserver.port=8191 > /tmp/democloud/m1-service.port.8191.txt &
+```
+
+* Curl home endpoint for both instances
+```
+curl http://localhost:8191 
+{"message":"I am M1 at port 8191","config.uri":"Not Applicable"}
+
+curl http://localhost:8091 
+{"message":"Hi! My name is m1.","config.uri":"http://localhost:8888"}
+```
+
+* Curl the gateway twice for m1 and you can see it alternates betweeb M1 instances
+```
+curl http://localhost:8099/gateway/m1
+{"message":"I am M1 at port 8191","config.uri":"Not Applicable"}
+
+curl http://localhost:8099/gateway/m1
+{"message":"Hi! My name is m1.","config.uri":"http://localhost:8888"}
+```
+
 ### Actuator Data
 * Deploy [actuator app](https://github.com/sfogo/spring-actuator-data)  
 `mvn package`  
