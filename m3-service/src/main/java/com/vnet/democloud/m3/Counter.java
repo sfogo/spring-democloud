@@ -19,7 +19,7 @@ public class Counter  {
     public synchronized int next() {return value++;}
     public synchronized void reset() {value = 0;}
 
-    static public Map map(Counter counter) {
+    static public Map<String,Object> map(Counter counter) {
         final Map<String,Object> map = new HashMap<>();
         map.put("name", counter.name);
         map.put("value", counter.value);

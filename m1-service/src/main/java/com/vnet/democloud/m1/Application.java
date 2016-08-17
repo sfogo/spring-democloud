@@ -51,12 +51,12 @@ public class Application {
 
     @RequestMapping(value = "/items/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Map item(@PathVariable String id) {
+    public Map<String,Object> item(@PathVariable String id) {
         // This is feigned
         final Map counter = counterService.nextValue(appName);
 
         // This is Hystrix wrapped
-        final Map item = itemService.getItem(demoResource +"/"+id);
+        final Map<String,Object> item = itemService.getItem(demoResource +"/"+id);
 
         item.put("counter", counter);
         item.put("message", demoMessage);
@@ -65,7 +65,7 @@ public class Application {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public Map home() {
+    public Map<String,Object> home() {
         final Map<String,Object> map = new HashMap<>();
         map.put("message", demoMessage);
         map.put("config.uri", configServer);
@@ -79,11 +79,11 @@ public class Application {
         @RequestMapping(value = "/counters/{key}",
                 method = RequestMethod.POST,
                 produces = MediaType.APPLICATION_JSON_VALUE)
-        Map nextValue(@PathVariable("key") String key);
+        Map<String,Object> nextValue(@PathVariable("key") String key);
 
         @RequestMapping(value = "/counters/{key}",
                 method = RequestMethod.GET,
                 produces = MediaType.APPLICATION_JSON_VALUE)
-        Map getValue(@PathVariable("key") String key);
+        Map<String,Object> getValue(@PathVariable("key") String key);
     }
 }

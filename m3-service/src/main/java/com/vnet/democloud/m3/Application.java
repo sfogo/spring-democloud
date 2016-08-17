@@ -39,35 +39,35 @@ public class Application {
     @RequestMapping(value = "/counters/{id}",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map next(@PathVariable String id) {
+    public Map<String,Object> next(@PathVariable String id) {
         return service.next(id);
     }
 
     @RequestMapping(value = "/counters/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map delete(@PathVariable String id) {
+    public Map<String,Object> delete(@PathVariable String id) {
         return service.reset(id);
     }
 
     @RequestMapping(value = "/counters/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map getCounter(@PathVariable String id) {
+    public Map<String,Object> getCounter(@PathVariable String id) {
         return service.get(id);
     }
 
     @RequestMapping(value = "/counters",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<Map> getCounters() {
+    public Collection<Map<String,Object>> getCounters() {
         return service.collect();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public Map home() {
-        final Map<String,String> map = new HashMap<>();
+    public Map<String,Object> home() {
+        final Map<String,Object> map = new HashMap<>();
         map.put("message", message);
         map.put("config.uri", configServer);
         return map;

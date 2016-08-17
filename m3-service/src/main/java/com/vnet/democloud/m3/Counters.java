@@ -17,24 +17,24 @@ public class Counters {
     static final private Log logger = LogFactory.getLog(Counters.class);
     static final private CounterPool pool = new CounterPool();
 
-    public Map get(String key) {
+    public Map<String,Object> get(String key) {
         logger.info("get:"+key);
         return Counter.map(pool.get(key));
     }
 
-    public Collection<Map> collect() {
+    public Collection<Map<String,Object>> collect() {
         logger.info("collect");
         return pool.collect();
     }
 
-    public Map next(String key) {
+    public Map<String,Object> next(String key) {
         logger.info("next:"+key);
         final Counter counter = pool.get(key);
         counter.next();
         return Counter.map(counter);
     }
 
-    public Map reset(String key) {
+    public Map<String,Object> reset(String key) {
         logger.info("reset:"+key);
         final Counter counter = pool.get(key);
         counter.reset();
@@ -54,7 +54,7 @@ public class Counters {
             }
             return counter;
         }
-        synchronized Collection<Map> collect() {
+        synchronized Collection<Map<String,Object>> collect() {
             // return counters.keySet().stream().map(counters::get).collect(Collectors.toCollection(LinkedList::new));
             return counters.keySet().stream().map(s -> Counter.map(counters.get(s))).collect(Collectors.toCollection(LinkedList::new));
         }

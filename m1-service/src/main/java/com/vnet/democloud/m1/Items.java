@@ -31,15 +31,15 @@ public class Items {
     RestTemplate restTemplate;
 
     @HystrixCommand(fallbackMethod = "reliable")
-    public Map getItem(String uri) {
+    public Map<String,Object> getItem(String uri) {
         logger.info(uri);
         return restTemplate.getForObject(URI.create(uri), Map.class);
     }
 
-    private Map reliable(String item) {
-        final Map<String,String> map = new HashMap<>();
+    private Map<String,Object> reliable(String item) {
+        final Map<String,Object> map = new HashMap<>();
         map.put("requested.item", item);
-        map.put("message", "This is an Hystrix Command fallback.");
+        map.put("warning", "This is an Hystrix Command fallback.");
         map.put("requestedAt", String.valueOf(System.currentTimeMillis()));
         map.put("class", getClass().getName());
         map.put("method", Thread.currentThread().getStackTrace()[2].getMethodName());
