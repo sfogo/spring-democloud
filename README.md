@@ -153,7 +153,7 @@ You can shut it all down with : kill `cat /tmp/democloud/pids.txt`
 * We have also specfied Eureka and Rabbit MQ locations (but it's actually superfluous because they are the default values anyway).
 * Start another M1 instance with port `8191`  
 ```
-cd m1-service`  
+cd m1-service  
 mvn spring-boot:run \
   -Dspring.cloud.bootstrap.enabled=false \
   -Ddemo.message='I am M1 at port 8191' \
@@ -169,19 +169,23 @@ mvn spring-boot:run \
 * Curl home endpoint for both instances
 ```
 curl http://localhost:8191 
-{"counter":{"name":"m1-service","value":0},"message":"I am M1 at port 8191","config.uri":"Not Applicable"}
+{"counter":{"name":"m1-service","value":0},
+ "message":"I am M1 at port 8191","config.uri":"Not Applicable"}
 
 curl http://localhost:8091 
-{"counter":{"name":"m1-service","value":0},"message":"Hi! My name is m1.","config.uri":"http://localhost:8888"}
+{"counter":{"name":"m1-service","value":0},
+ "message":"Hi! My name is m1.","config.uri":"http://localhost:8888"}
 ```
 
 * Curl the gateway twice for m1 and you can see it alternates between M1 instances
 ```
 curl http://localhost:8099/gateway/m1
-{"counter":{"name":"m1-service","value":0},"message":"I am M1 at port 8191","config.uri":"Not Applicable"}
+{"counter":{"name":"m1-service","value":0},
+ "message":"I am M1 at port 8191","config.uri":"Not Applicable"}
 
 curl http://localhost:8099/gateway/m1
-{"counter":{"name":"m1-service","value":0},"message":"Hi! My name is m1.","config.uri":"http://localhost:8888"}
+{"counter":{"name":"m1-service","value":0},
+ "message":"Hi! My name is m1.","config.uri":"http://localhost:8888"}
 ```
 * Refresh Eureka `http://localhost:8761`. M1 is now multi-instances.  
 <img src="https://cloud.githubusercontent.com/assets/13286393/17723727/3d1b9728-63f1-11e6-8082-455215d96b59.png"
