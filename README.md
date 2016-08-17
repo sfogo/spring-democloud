@@ -9,6 +9,7 @@
 - [Examples and screen shots](#examples-and-screen-shots)
   - [Run it all locally](#run-it-all-locally)
   - [Eureka](#eureka)
+  - [Configuration Server](#configuration-server)
   - [Generate traffic and watch dashboard](#dashboard)
   - [View Actuator Data](#actuator-data)
 
@@ -26,18 +27,20 @@ In this demo, applications are configured to [fail fast](http://projects.spring.
 
 ## Applications
 ### Summary
-|Application|Context Path|Port|Actuator|Comment|
-|---|---|---|---|---|
-|[Configuration Server](config-server)|`/admin`|8888|No||
+|Application|Context Path|Port|Comment|
+|---|---|---|---|
+|[Configuration Server](config-server)|`/`|8888|Management context path is `/admin`|
 |[Gateway](gateway)|`/gateway`|8099|Yes|`/gateway/m1` routed to M1 Service<br>`/gateway/m2` routed to M2 Service|
-|[Turbine](turbine)|`/`|8989|Yes|management port 8991|
-|[Eureka](eureka)|`/`|8761|Yes||
-|[Dashboard](dashboard)|`/`|7980|Yes|management port 7981|
-|[M1 Service](m1-service)|`/`|8091|Yes|`GET /items/{id}` endpoint echoes the same identifier along with the total number of M1 invocations retrieved from M3|
-|[M2 Service](m2-service)|`/`|8092|Yes|Same as above with M2 tag|
-|[M3 Service](m3-service)|`/`|8093|Yes|Counter service<br>`POST /counters/{tag}` increments counter<br>`GET /counters/{tag}` gets counter value<br>`GET /counters` retrieves all counters|
+|[Turbine](turbine)|`/`|8989|Management port 8991|
+|[Eureka](eureka)|`/`|8761||
+|[Dashboard](dashboard)|`/`|7980|Management port 7981|
+|[M1 Service](m1-service)|`/`|8091|`GET /items/{id}` endpoint echoes the same identifier along with the total number of M1 invocations retrieved from M3|
+|[M2 Service](m2-service)|`/`|8092|Same as above with M2 tag|
+|[M3 Service](m3-service)|`/`|8093|Counter service<br>`POST /counters/{tag}` increments counter<br>`GET /counters/{tag}` gets counter value<br>`GET /counters` retrieves all counters|
 
-_**Note**_ : [Rabbit MQ](https://www.rabbitmq.com) is running with port `5672`.
+_**Notes**_
+* All applications have actuator endpoints enabled (either explicitly in `pom.xml` with `spring-boot-starter-actuator` or as a consequence of being something else, e.g Configuration Server).
+* [Rabbit MQ](https://www.rabbitmq.com) is running with port `5672`.
 
 ### Application level annotations
 * All applications use `@SpringBootApplication`.
@@ -124,6 +127,12 @@ You can shut it all down with : kill `cat /tmp/democloud/pids.txt`
   * Get all apps : `http://localhost:8761/eureka/apps`
   * Get one app : `http://localhost:8761/eureka/apps/M3-SERVICE`
   * See Eureka [operations](https://github.com/Netflix/eureka/wiki/Eureka-REST-operations) (_but unsure which ones are available through Spring_).
+
+### Configuration Server
+* REST endpoints are available:
+  * `http://localhost:8888/m1-service/active/master`
+  * `http://localhost:8888/gateway/active/master`
+  * See [nomenclature](http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html#_locating_remote_configuration_resources)
 
 ### Dashboard
 * Go to Dashboard `http://localhost:7980/hystrix`
