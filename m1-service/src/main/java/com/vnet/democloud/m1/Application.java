@@ -31,13 +31,13 @@ public class Application {
     String demoMessage = "Welcome!";
 
     @Value("${demo.resource}")
-    String resource;
+    String demoResource;
 
     @Value("${spring.cloud.config.uri}")
     String configServer;
 
     @Value("${spring.application.name}")
-    String name;
+    String appName;
 
     @Autowired
     Items itemService;
@@ -53,10 +53,10 @@ public class Application {
     @ResponseBody
     public Map item(@PathVariable String id) {
         // This is feigned
-        final Map counter = counterService.nextValue(name);
+        final Map counter = counterService.nextValue(appName);
 
         // This is Hystrix wrapped
-        final Map item = itemService.getItem(resource+"/"+id);
+        final Map item = itemService.getItem(demoResource +"/"+id);
 
         item.put("counter", counter);
         item.put("message", demoMessage);
@@ -66,17 +66,24 @@ public class Application {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public Map home() {
-        final Map<String,String> map = new HashMap<>();
+        final Map<String,Object> map = new HashMap<>();
         map.put("message", demoMessage);
         map.put("config.uri", configServer);
+        map.put("counter", counterService.getValue(appName));
         return map;
     }
 
     @FeignClient("m3-service")
     interface CounterService {
+
         @RequestMapping(value = "/counters/{key}",
                 method = RequestMethod.POST,
                 produces = MediaType.APPLICATION_JSON_VALUE)
         Map nextValue(@PathVariable("key") String key);
+
+        @RequestMapping(value = "/counters/{key}",
+                method = RequestMethod.GET,
+                produces = MediaType.APPLICATION_JSON_VALUE)
+        Map getValue(@PathVariable("key") String key);
     }
 }
