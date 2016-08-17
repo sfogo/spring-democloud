@@ -1,0 +1,16 @@
+{
+  "demo":{"message":"M2 Service at port 8192","resource":"http://vachement.net/api/items"},
+  "eureka.client.serviceUrl.defaultZone":"http://localhost:8761/eureka/",
+  "server":{"port":8192}, 
+  "spring":{
+    "application":{"name":"m2-service"},
+    "rabbitmq":{"host":"localhost","port":5672},
+    "cloud.config.uri":"Not Applicable"
+  },
+  "endpoints":{"cors":{
+     "allowedOrigins":"*",
+     "allowedMethods":"POST, GET, OPTIONS, DELETE",
+     "maxAge":"3600",
+     "allowedHeaders":"x-requested-with, authorization"}
+  }
+}
