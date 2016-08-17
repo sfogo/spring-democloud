@@ -68,8 +68,8 @@ _**Notes**_
      border="0" width="40%" />
 
 Using the [Feign](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-feign) declaration, it is even easier to get a load-balanced invocation. Feign is an extremely handy shortcut that :
-- Attaches a service to a Java interface and REST operations (the ones you pick) to functions of that interface, making it really simple to code REST consumers,
-- Load balances invocations,
+- Attaches a service to a Java interface and its REST endpoints (the ones you pick) to functions of that interface, making it really straightforward to code REST consumers,
+- Load balances service invocations,
 - Hystrix-wraps them (this can however be [disabled](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-feign-hystrix)).
 
 In this demo, M1 and M2 [invocations](https://github.com/sfogo/spring-democloud/blob/master/m1-service/src/main/java/com/vnet/democloud/m1/Application.java) of M3 are feigned.
