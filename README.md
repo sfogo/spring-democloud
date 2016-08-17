@@ -11,6 +11,7 @@
   - [Eureka](#eureka)
   - [Configuration Server](#configuration-server)
   - [Generate traffic and watch dashboard](#dashboard)
+  - [Add instances and load balance](#add-an-m1-instance)
   - [View Actuator Data](#actuator-data)
 
 ## Overview
@@ -120,7 +121,7 @@ You can shut it all down with : kill `cat /tmp/democloud/pids.txt`
 ```
 
 ### Eureka
-* Go to Dashboard `http://localhost:8761`  
+* Go to `http://localhost:8761`  
 <img src="https://cloud.githubusercontent.com/assets/13286393/17682183/c0ee86f8-62fe-11e6-992e-f5fa1ea591f0.png"
      border="0" width="80%" />
 * Some REST endpoints are available:
@@ -135,7 +136,7 @@ You can shut it all down with : kill `cat /tmp/democloud/pids.txt`
   * See [nomenclature](http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html#_locating_remote_configuration_resources)
 
 ### Dashboard
-* Go to Dashboard `http://localhost:7980/hystrix`
+* Go to `http://localhost:7980/hystrix`
 * Monitor Turbine stream `http://localhost:8989`
 * Generate some traffic from your browser
   * `http://localhost:8099/gateway/m1/items/123`
@@ -174,7 +175,7 @@ curl http://localhost:8091
 {"message":"Hi! My name is m1.","config.uri":"http://localhost:8888"}
 ```
 
-* Curl the gateway twice for m1 and you can see it alternates betweeb M1 instances
+* Curl the gateway twice for m1 and you can see it alternates between M1 instances
 ```
 curl http://localhost:8099/gateway/m1
 {"message":"I am M1 at port 8191","config.uri":"Not Applicable"}
@@ -182,6 +183,9 @@ curl http://localhost:8099/gateway/m1
 curl http://localhost:8099/gateway/m1
 {"message":"Hi! My name is m1.","config.uri":"http://localhost:8888"}
 ```
+* Refresh Eureka `http://localhost:8761`. M1 is now multi-instances.  
+<img src="https://cloud.githubusercontent.com/assets/13286393/17723727/3d1b9728-63f1-11e6-8082-455215d96b59.png"
+     border="0" width="60%" />
 
 ### Actuator Data
 * Deploy [actuator app](https://github.com/sfogo/spring-actuator-data)  
