@@ -28,7 +28,7 @@ import java.util.Map;
 public class Application {
 
     @Value("${demo.message}")
-    String message = "Welcome!";
+    String demoMessage = "Welcome!";
 
     @Value("${demo.resource}")
     String resource;
@@ -40,10 +40,10 @@ public class Application {
     String name;
 
     @Autowired
-    Items service;
+    Items itemService;
 
     @Autowired
-    M3Service m3Service;
+    CounterService counterService;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -53,12 +53,13 @@ public class Application {
     @ResponseBody
     public Map item(@PathVariable String id) {
         // This is feigned
-        final Map counter = m3Service.nextValue(name);
+        final Map counter = counterService.nextValue(name);
 
         // This is Hystrix wrapped
-        final Map item = service.getItem(resource+"/"+id);
+        final Map item = itemService.getItem(resource+"/"+id);
 
         item.put("counter", counter);
+        item.put("message", demoMessage);
         return item;
     }
 
@@ -66,13 +67,13 @@ public class Application {
     @ResponseBody
     public Map home() {
         final Map<String,String> map = new HashMap<>();
-        map.put("message", message);
+        map.put("message", demoMessage);
         map.put("config.uri", configServer);
         return map;
     }
 
     @FeignClient("m3-service")
-    interface M3Service {
+    interface CounterService {
         @RequestMapping(value = "/counters/{key}",
                 method = RequestMethod.POST,
                 produces = MediaType.APPLICATION_JSON_VALUE)
