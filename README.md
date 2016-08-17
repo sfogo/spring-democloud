@@ -149,9 +149,7 @@ You can shut it all down with : kill `cat /tmp/democloud/pids.txt`
      border="0" width="90%" />
 
 ### Add an M1 instance
-* M1 `server.port` is acquired from Configuration Server and that cannot be bypassed unless you disable the bootstrap stage, which is possible with `spring.cloud.bootstrap.enabled`. Once disabled, we can specify a different port (`8191` in this case) as well as other properties that M1 is expecting to see.
-* We have also specfied Eureka and Rabbit MQ locations (but it's actually superfluous because they are the default values anyway).
-* Start another M1 instance with port `8191`  
+* M1 port (`server.port`) is acquired from Configuration Server and that cannot be bypassed unless you disable the bootstrap stage with `spring.cloud.bootstrap.enabled=false`. Once disabled, you can specify a different port (`8191` in this case) as well as other properties that M1 is expecting to see. Eureka and Rabbit MQ locations are provided (_it's actually superfluous because they are the default values anyway_). Start another M1 instance with port `8191` :
 ```
 cd m1-service  
 mvn spring-boot:run \
