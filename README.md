@@ -6,7 +6,7 @@
   - [Interaction diagram](##interaction-diagram)
 - [Client side load balancing](#client-side-load-balancing)
 - [Actuator](#actuator)
-- [Examples and screen shots](#examples-and-screen-shots)
+- [Play](#play)
   - [Run it all locally](#run-it-all-locally)
   - [Eureka](#eureka)
   - [Configuration Server](#configuration-server)
@@ -35,7 +35,7 @@ In this demo, applications are configured to [fail fast](http://projects.spring.
 |[Turbine](turbine)|`/`|8989|Management port 8991|
 |[Eureka](eureka)|`/`|8761||
 |[Dashboard](dashboard)|`/`|7980|Management port 7981|
-|[M1 Service](m1-service)|`/`|8091|`GET /items/{id}` invokes one outside resource and M3 (see [diagram](#interaction-diagram))|
+|[M1 Service](m1-service)|`/`|8091|`GET /items/{id}` invokes both one outside resource and M3 (see interaction [diagram](#interaction-diagram))|
 |[M2 Service](m2-service)|`/`|8092|Same as M1 with M2 tag|
 |[M3 Service](m3-service)|`/`|8093|Counter service<br>`POST /counters/{tag}` increments counter<br>`GET /counters/{tag}` gets counter value<br>`GET /counters` retrieves all counters|
 
@@ -88,7 +88,7 @@ Spring Cloud emphasizes the importance of Spring [Actuator](https://spring.io/gu
 |[M2 Service](m2-service)|156|412|264|
 |[M3 Service](m3-service)|155|328|90|
 
-## Examples and Screen Shots
+## Play
 ### Run it all locally
 * Rabbit MQ
   * Start rabbit MQ separately (port `5672`)  
