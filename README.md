@@ -19,7 +19,7 @@ This is a simple (not [secured](http://projects.spring.io/spring-security), not 
 - Participants (i.e service instances) pull configuration values from a central location ([Configuration Server](https://cloud.spring.io/spring-cloud-config/)) and self-register with a service registry ([Eureka](https://cloud.spring.io/spring-cloud-netflix/)) so that others (i.e. participants) can discover them. A gateway ([Zuul](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_router_and_filter_zuul)) publicly exposes some of the services (Zuul provides generic routing and filtering [capabilities](http://techblog.netflix.com/2013/06/announcing-zuul-edge-service-in-cloud.html)).
 <img src="https://cloud.githubusercontent.com/assets/13286393/17674081/df6b0168-62d8-11e6-8803-06682109aa92.png"
      border="0" width="50%" />
-- Services exist in multiple registered instances. A consumer declared as a [Ribbon](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-ribbon) client gets client-side load balancing between registered instances (_for invocations that are declared load-balanced_). This is typically used when gateway routes incoming calls as well as for regular inter-service communication.
+- Services exist in multiple registered instances. A client declared as a [Ribbon](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-ribbon) client gets client-side load balancing between registered instances (_for invocations that are declared load-balanced_). This is typically used when gateway routes incoming calls as well as for regular inter-service communication.
 - Service availability is controlled using the [circuit breaker](http://martinfowler.com/bliki/CircuitBreaker.html) pattern whose implementation is [Hystrix](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_circuit_breaker_hystrix_clients). [Turbine](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_turbine) application aggregates invocation statistics for calls that are hystrix-wrapped. These statistics are called hystrix streams (_enabled provided that the application includes a dependency on_ [spring actuator](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_hystrix_metrics_stream)). [Hystrix dashboard](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_circuit_breaker_hystrix_dashboard) pulls aggregated metrics from Turbine for presentation. With the default configuration, Turbine pulls Hystix streams from applications but in this demo, applications channel metrics through [Rabbit MQ](https://www.rabbitmq.com).  
 <img src="https://cloud.githubusercontent.com/assets/13286393/17674080/df69be48-62d8-11e6-9b38-8de10b404aee.png"
      border="0" width="40%" />
@@ -68,7 +68,7 @@ _**Notes**_
      border="0" width="40%" />
 
 Using the [Feign](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-feign) declaration, it is even easier to get a load-balanced invocation. Feign is an extremely handy shortcut that :
-- Attaches a service to a Java interface and its REST endpoints (the ones you pick) to functions of that interface, making it really straightforward to code REST consumers,
+- Attaches a service to a Java interface and its REST endpoints (the ones you pick) to functions of that interface, making it really straightforward to code REST clients,
 - Load balances service invocations,
 - Hystrix-wraps them (this can however be [disabled](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#spring-cloud-feign-hystrix)).
 
