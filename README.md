@@ -565,7 +565,8 @@ frolvlad/alpine-oraclejdk8  slim          ea24082fc934    6 weeks ago         16
 * Check m1 containers  
 ```
 docker ps | grep springdemocloud_m1 
-6cc07ca3b191  springdemocloud_m1   "java -Xmx200m -jar /"  About an hour ago   Up About an hour  8091/tcp  springdemocloud_m1_1
+6cc07ca3b191  springdemocloud_m1   "java -Xmx200m -jar /"  About an hour ago   Up About an hour
+  8091/tcp  springdemocloud_m1_1
 ```
 * Scale by 1  
 ```
@@ -575,7 +576,11 @@ Creating and starting springdemocloud_m1_2 ... done
 * Re-check m1 containers  
 ```
 docker ps | grep springdemocloud_m1 
-046c2aa1e0df  springdemocloud_m1   "java -Xmx200m -jar /"   9 seconds ago      Up 6 seconds      8091/tcp  springdemocloud_m1_2
-6cc07ca3b191  springdemocloud_m1   "java -Xmx200m -jar /"   About an hour ago  Up About an hour  8091/tcp  springdemocloud_m1_1
+046c2aa1e0df  springdemocloud_m1   "java -Xmx200m -jar /"   9 seconds ago      Up 6 seconds    
+  8091/tcp  springdemocloud_m1_2
+6cc07ca3b191  springdemocloud_m1   "java -Xmx200m -jar /"   About an hour ago  Up About an hour
+  8091/tcp  springdemocloud_m1_1
 ```
-
+* Eureka view. Note that we now have 2 instances at 2 different Docker network addresses but using the same port while with demo without containers we have 2 localhost instances using different ports.  
+<img src="https://cloud.githubusercontent.com/assets/13286393/18227525/423d4f0a-71dc-11e6-915d-dc6b2cf1e419.png"
+     border="0" width="80%" />
