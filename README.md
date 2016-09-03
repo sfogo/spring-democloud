@@ -18,6 +18,7 @@
   - [Docker Composition](#composition)
   - [Images](#images)
   - [Examples](#examples)
+  - [Add container instances](#add-container-instances)
 
 ## Overview
 This is a simple (_not [secured](http://projects.spring.io/spring-security)_) demo that can be run [with](#run-in-docker-containers) or [without](#run-locally) containers and that showcases a possible (if not typical) microservices [Spring Cloud](http://projects.spring.io/spring-cloud) landscape where :
