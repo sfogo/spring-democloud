@@ -15,6 +15,7 @@
   - [View Actuator Data](#actuator-data)
 - [Run in Docker Containers](#run-in-docker-containers)
   - [Build and run](#build-and-run)
+  - [Docker Composition](#composition)
 
 ## Overview
 This is a simple (_not [secured](http://projects.spring.io/spring-security)_) demo that can be run [with](#run-in-docker-containers) or [without](#run-locally) containers and that showcases a possible (if not typical) microservices [Spring Cloud](http://projects.spring.io/spring-cloud) landscape where :
@@ -251,9 +252,9 @@ Profile values are used in application configuration files (see [example](m1-ser
 * Build Docker images and start containers  
 `docker-compose -f ./docker-compose.yml up -d --build`
 * All services still go by the [Config First Bootstrap](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#config-first-bootstrap) and the [fail fast](http://projects.spring.io/spring-cloud/spring-cloud.html#config-client-fail-fast) options. No starting order is mandated and therefore the Configuration Server may not yet be ready when a service starts up : it will fail but the `restart: always` option present in `Dockerfile` will restart the container. It may then take a few `Spring fail fast / Docker restart` cycles until the Configuration Server is found at boot time. On my system, it takes at least 3 to 4 minutes for all pieces to be up and running.
-* [Docker Compose file](docker-compose.yml) builds new images except for RabbitMQ whose image is pulled from the [hub](https://hub.docker.com/_/rabbitmq/).
-### Externally exposed services
-* Containers internally use the same ports as with the demo without containers (_but they could internally all use the same port_). Only the following pieces are externally exposed :
+
+### Composition
+[Docker Compose file](docker-compose.yml) builds new images except for RabbitMQ whose image is pulled from the [hub](https://hub.docker.com/_/rabbitmq/). Containers internally use the same ports as with the demo without containers (_but they could internally all use the same port_). Only the following pieces are externally exposed :
 |Component|Externally|Container|
 |---|---|---|
 |Configuration Server|`8888`|`8888`|
@@ -262,4 +263,4 @@ Profile values are used in application configuration files (see [example](m1-ser
 |Dashboard|`7980`|`7980`|
 |Rabbit MQ Console|`15672`|`15672`|
 * m1, m2 and m3 services can only be accessed through the gateway.
-* Turbine stream at port `8989` is not externally exposed but the [Hystrix dashboard](http://localhost:7980/hystrix) can `http://turbine:8989`. As in `docker profile` sections of configuration files, hostnames [**automatically created**](https://docs.docker.com/compose/networking/) by Docker compostion can be used for inter-container communication.
+* Turbine stream at port `8989` is not externally exposed but the [Hystrix dashboard](http://localhost:7980/hystrix) can simply use `http://turbine:8989`. As in `docker` profile sections of configuration files, hostnames [**automatically created**](https://docs.docker.com/compose/networking/) by Docker compostion can be used for inter-container communication.
