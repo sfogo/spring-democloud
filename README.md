@@ -255,6 +255,7 @@ Profile values are used in application configuration files (see [example](m1-ser
 
 ### Composition
 [Docker Compose file](docker-compose.yml) builds new images except for RabbitMQ whose image is pulled from the [hub](https://hub.docker.com/_/rabbitmq/). Containers internally use the same ports as with the demo without containers (_but they could internally all use the same port_). Only the following pieces are externally exposed :
+
 |Component|Externally|Container|
 |---|---|---|
 |Configuration Server|`8888`|`8888`|
