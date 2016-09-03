@@ -245,6 +245,9 @@ _(this is possible because all participants [enable CORS](config-server/src/main
 ### Build and run
 * Package all modules  
 `mvn clean package`
+* Enable [Spring Profile](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html#howto-change-configuration-depending-on-the-environment) for Docker  
+`export SPRING_PROFILES_ACTIVE=docker`  
+Profile values are used in application configuration files (see [example](m1-service/src/main/resources/bootstrap.yml)) and properties can be segegrated by [profile](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-profile-specific-properties) (i.e. dev vs. prod). There are multiple [ways](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html#howto-set-active-spring-profiles) to set a profile active, using an environment variable is just one of them.
 * Build Docker images and start containers  
 `docker-compose -f ./docker-compose.yml up -d --build`
 * All services still go by the [Config First Bootstrap](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#config-first-bootstrap) and the [fail fast](http://projects.spring.io/spring-cloud/spring-cloud.html#config-client-fail-fast) options. No starting order is mandated and therefore the Configuration Server may not yet be ready when a service starts up : it will fail but the `restart: always` option present in `Dockerfile` will restart the container. It may then take a few `Spring fail fast / Docker restart` cycles until the Configuration Server is found at boot time.
