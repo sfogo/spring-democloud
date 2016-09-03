@@ -255,6 +255,7 @@ Profile values are used in application configuration files (see [example](m1-ser
 ### Externally exposed services
 * Containers internally use the same ports as with the demo without containers (_but they could internally all use the same port_). Only the following pieces are externally exposed :  
 |Component|Externally|Container|
+|---|---|---|
 |Configuration Server|`8888`|`8888`|
 |Eureka|`8761`|`8761`|
 |Gateway|`80`|`8099`|
