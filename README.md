@@ -16,6 +16,8 @@
 - [Run in Docker Containers](#run-in-docker-containers)
   - [Build and run](#build-and-run)
   - [Docker Composition](#composition)
+  - [Images](#images)
+  - [Examples](#examples)
 
 ## Overview
 This is a simple (_not [secured](http://projects.spring.io/spring-security)_) demo that can be run [with](#run-in-docker-containers) or [without](#run-locally) containers and that showcases a possible (if not typical) microservices [Spring Cloud](http://projects.spring.io/spring-cloud) landscape where :
@@ -535,15 +537,45 @@ Profile values are used in application configuration files (see [example](m1-ser
 * Turbine stream at port `8989` is not externally exposed but the [Hystrix dashboard](http://localhost:7980/hystrix) can simply use `http://turbine:8989`. As in `docker` profile sections of configuration files, hostnames [**automatically created**](https://docs.docker.com/compose/networking/) by Docker compostion can be used for inter-container communication.
 
 ### Examples
-`curl http://localhost/gateway/m1/items/123-abc-456`
-<br/>
+* `curl http://localhost/gateway/m1/items/123-abc-456`  
 `{"item":"123-abc-456","server":"vachement.net","time":{"millis":1472933106,"text":"2016-09-03T13:05:06-07:00","day":"Sat","week":"35"},"counter":{"name":"m1-service","value":283},"message":"Hi! My name is m1."}`
 
-`curl http://localhost/gateway/m2/items/321-xyz-123`
-<br/>
+* `curl http://localhost/gateway/m2/items/321-xyz-123`  
 `{"item":"321-xyz-123","server":"vachement.net","time":{"millis":1472933209,"text":"2016-09-03T13:06:49-07:00","day":"Sat","week":"35"},"counter":{"name":"m2-service","value":283},"message":"Hi! My name is m2."}`
 
-`curl http://localhost/gateway/m3/counters`
-<br/>
+* `curl http://localhost/gateway/m3/counters`  
 `[{"name":"m2-service","value":283},{"name":"m1-service","value":283}]`
+
+### Images
+```
+docker images
+REPOSITORY                  TAG           IMAGE ID        CREATED             SIZE
+springdemocloud_config      latest        1f05f50f151f    About an hour ago   188.2 MB
+springdemocloud_dashboard   latest        3c6f07155076    About an hour ago   209.1 MB
+springdemocloud_gateway     latest        f5d7f966fef0    About an hour ago   204.7 MB
+springdemocloud_m3          latest        501b7a83d8a1    About an hour ago   202 MB
+springdemocloud_m1          latest        bfc521741e09    About an hour ago   208.2 MB
+springdemocloud_turbine     latest        57ff57564521    About an hour ago   207 MB
+springdemocloud_m2          latest        e896f1acf388    About an hour ago   208.2 MB
+springdemocloud_registry    latest        7e1a8ea78c57    About an hour ago   205.7 MB
+rabbitmq                    3-management  cb479f313c93    11 days ago         180.8 MB
+frolvlad/alpine-oraclejdk8  slim          ea24082fc934    6 weeks ago         167.1 MB
+```
+### Add container instances
+* Check m1 containers  
+```
+docker ps | grep springdemocloud_m1 
+6cc07ca3b191  springdemocloud_m1   "java -Xmx200m -jar /"  About an hour ago   Up About an hour  8091/tcp  springdemocloud_m1_1
+```
+* Scale by 1  
+```
+docker-compose scale m1=2
+Creating and starting springdemocloud_m1_2 ... done
+```
+* Re-check m1 containers  
+```
+docker ps | grep springdemocloud_m1 
+046c2aa1e0df  springdemocloud_m1   "java -Xmx200m -jar /"   9 seconds ago      Up 6 seconds      8091/tcp  springdemocloud_m1_2
+6cc07ca3b191  springdemocloud_m1   "java -Xmx200m -jar /"   About an hour ago  Up About an hour  8091/tcp  springdemocloud_m1_1
+```
 
