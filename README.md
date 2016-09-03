@@ -534,10 +534,12 @@ Profile values are used in application configuration files (see [example](m1-ser
 * Turbine stream at port `8989` is not externally exposed but the [Hystrix dashboard](http://localhost:7980/hystrix) can simply use `http://turbine:8989`. As in `docker` profile sections of configuration files, hostnames [**automatically created**](https://docs.docker.com/compose/networking/) by Docker compostion can be used for inter-container communication.
 
 ### Examples
-`curl http://localhost/gateway/m1/items/123-abc-456  
-{"item":"123-abc-456","server":"vachement.net","time":{"millis":1472933106,"text":"2016-09-03T13:05:06-07:00","day":"Sat","week":"35"},"counter":{"name":"m1-service","value":283},"message":"Hi! My name is m1."}`
-`curl http://localhost/gateway/m2/items/321-xyz-123  
-{"item":"321-xyz-123","server":"vachement.net","time":{"millis":1472933209,"text":"2016-09-03T13:06:49-07:00","day":"Sat","week":"35"},"counter":{"name":"m2-service","value":283},"message":"Hi! My name is m2."}`
-`curl http://localhost/gateway/m3/counters  
-[{"name":"m2-service","value":283},{"name":"m1-service","value":283}]`
+`curl http://localhost/gateway/m1/items/123-abc-456`
+`{"item":"123-abc-456","server":"vachement.net","time":{"millis":1472933106,"text":"2016-09-03T13:05:06-07:00","day":"Sat","week":"35"},"counter":{"name":"m1-service","value":283},"message":"Hi! My name is m1."}`
+
+`curl http://localhost/gateway/m2/items/321-xyz-123`
+`{"item":"321-xyz-123","server":"vachement.net","time":{"millis":1472933209,"text":"2016-09-03T13:06:49-07:00","day":"Sat","week":"35"},"counter":{"name":"m2-service","value":283},"message":"Hi! My name is m2."}`
+
+`curl http://localhost/gateway/m3/counters`
+`[{"name":"m2-service","value":283},{"name":"m1-service","value":283}]`
 
