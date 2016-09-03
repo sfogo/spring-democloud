@@ -1,0 +1,87 @@
+version: '2'
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 15672:15672
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  config:
+    build: config-server
+    restart: always
+    ports:
+      - 8888:8888
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  registry:
+    build: eureka
+    restart: always
+    ports:
+      - 8761:8761
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  gateway:
+    build: gateway
+    restart: always
+    ports:
+      - 80:8099
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  m3:
+    build: m3-service
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  m2:
+    build: m2-service
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  m1:
+    build: m1-service
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  turbine:
+    build: turbine
+    restart: always
+    ports:
+      - 8991:8991
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  dashboard:
+    build: dashboard
+    restart: always
+    ports:
+      - 7980:7980
+      - 7981:7981
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"

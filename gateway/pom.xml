@@ -3,8 +3,8 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.vnet.democloud.gateway</groupId>
-    <artifactId>App</artifactId>
+    <groupId>com.vnet.democloud</groupId>
+    <artifactId>gateway</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
 
@@ -71,7 +71,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <finalName>config</finalName>
+                    <finalName>gateway</finalName>
                 </configuration>
             </plugin>
         </plugins>

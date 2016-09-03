@@ -5,3 +5,16 @@ spring:
     config:
       uri: http://localhost:8888
       fail-fast: true
+
+---
+# A separate profile used when deploying with Docker
+spring:
+  profiles:
+    active: docker
+
+  application:
+    name: turbine
+  cloud:
+    config:
+      uri: http://config:8888
+      fail-fast: true

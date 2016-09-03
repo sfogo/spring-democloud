@@ -12,12 +12,17 @@ zuul:
     socket-timeout-millis: 20000
 
   routes:
-    m1-service:
+    m1-route:
         path: /m1/**
         serviceId: m1-service
         sensitiveHeaders:
 
-    m2-service:
+    m2-route:
         path: /m2/**
         serviceId: m2-service
+        sensitiveHeaders:
+
+    m3-route:
+        path: /m3/**
+        serviceId: m3-service
         sensitiveHeaders:

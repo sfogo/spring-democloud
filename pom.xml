@@ -13,6 +13,7 @@
         <module>eureka</module>
         <module>turbine</module>
         <module>gateway</module>
+        <module>dashboard</module>
         <module>m1-service</module>
         <module>m2-service</module>
         <module>m3-service</module>

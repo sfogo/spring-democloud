@@ -16,3 +16,27 @@ spring:
   rabbitmq:
     host: localhost
     port: 5672
+
+---
+# A separate profile for deploying with Docker
+spring:
+  profiles:
+    active: docker
+
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://registry:8761/eureka/
+
+endpoints:
+  cors:
+    allowedOrigins: '*'
+    allowedMethods: POST, GET, OPTIONS, DELETE
+    maxAge: 3600
+    allowedHeaders: x-requested-with, authorization
