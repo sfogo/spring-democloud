@@ -1,4 +1,4 @@
-# Spring Cloud Demo with and without Containers
+# Spring Cloud Demo
 - [Overview](#overview)
 - [Applications](#applications)
   - [Summary](#summary)
@@ -17,7 +17,7 @@
   - [Build and run](#build-and-run)
 
 ## Overview
-This is a simple (not [secured](http://projects.spring.io/spring-security) demo that showcases a possible (if not typical) microservices [Spring Cloud](http://projects.spring.io/spring-cloud) landscape where :
+This is a simple (_not [secured](http://projects.spring.io/spring-security)_) demo that can be run [with](#run-in-docker-containers) or [without](#run-locally) containers and that showcases a possible (if not typical) microservices [Spring Cloud](http://projects.spring.io/spring-cloud) landscape where :
 - Participants (i.e service instances) pull configuration values from a central location ([Configuration Server](https://cloud.spring.io/spring-cloud-config/)) and self-register with a service registry ([Eureka](https://cloud.spring.io/spring-cloud-netflix/)) so that others (i.e. participants) can discover them. A gateway ([Zuul](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_router_and_filter_zuul)) publicly exposes some of the services (Zuul provides generic routing and filtering [capabilities](http://techblog.netflix.com/2013/06/announcing-zuul-edge-service-in-cloud.html)).
 <img src="https://cloud.githubusercontent.com/assets/13286393/17674081/df6b0168-62d8-11e6-8803-06682109aa92.png"
      border="0" width="50%" />
@@ -26,7 +26,7 @@ This is a simple (not [secured](http://projects.spring.io/spring-security) demo 
 <img src="https://cloud.githubusercontent.com/assets/13286393/17674080/df69be48-62d8-11e6-9b38-8de10b404aee.png"
      border="0" width="40%" />
 - Microservices landscape is inherently dynamic but participants must get hold of something **fixed** to be able to start working : you will typically have to choose between a fixed **configuration server** or a fixed **discovery service**. This demo uses the default option ([Config First Bootstrap](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#config-first-bootstrap)) while the other option ([Discovery First Bootstrap](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#discovery-first-bootstrap)) has applications bootstrap with the discovery service to discover the configuration server.  
-In this demo, applications are configured to [fail fast](http://projects.spring.io/spring-cloud/spring-cloud.html#config-client-fail-fast) in case configuration server is not available but you can also tell them to keep [trying](http://projects.spring.io/spring-cloud/spring-cloud.html#config-client-retry). See the [**dockerized**](https://docs.docker.com/engine/understanding-docker/)) flavor of the [demo](#run-in-docker-containers) where `fail fast` and [always restart](https://docs.docker.com/engine/reference/run/#restart-policies-restart) policies allow for starting all containers without minding about the starting order.
+In this demo, applications are configured to [fail fast](http://projects.spring.io/spring-cloud/spring-cloud.html#config-client-fail-fast) in case configuration server is not available but you can also tell them to keep [trying](http://projects.spring.io/spring-cloud/spring-cloud.html#config-client-retry). See the [**dockerized**](https://docs.docker.com/engine/understanding-docker/) flavor of the [demo](#run-in-docker-containers) where _Spring fail fast_ and Docker [always restart](https://docs.docker.com/engine/reference/run/#restart-policies-restart) policies allow for starting everything without minding about the booting order.
 
 ## Applications
 ### Summary
@@ -247,5 +247,6 @@ _(this is possible because all participants [enable CORS](config-server/src/main
 `mvn clean package`
 * Build Docker images and start containers  
 `docker-compose -f ./docker-compose.yml up -d --build`
-* All services still go by the ([Config First Bootstrap](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#config-first-bootstrap)) and the [fail fast](http://projects.spring.io/spring-cloud/spring-cloud.html#config-client-fail-fast) options. No starting order is mandated and therefore the Configuration Server may not yet be ready when a service starts up : it will fail but the `restart: always` option present in `Dockerfile` will restart the container. It may then take a `Spring fail fast / Docker restart` cycles until the Configuration Server is found at boot time.
+* All services still go by the [Config First Bootstrap](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#config-first-bootstrap) and the [fail fast](http://projects.spring.io/spring-cloud/spring-cloud.html#config-client-fail-fast) options. No starting order is mandated and therefore the Configuration Server may not yet be ready when a service starts up : it will fail but the `restart: always` option present in `Dockerfile` will restart the container. It may then take a few `Spring fail fast / Docker restart` cycles until the Configuration Server is found at boot time.
+* [Docker Compose file](docker-compose.yml) builds all components except RabbitMQ whose image is pulled from the [hub](https://hub.docker.com/_/rabbitmq/).
 
