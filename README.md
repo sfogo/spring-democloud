@@ -273,13 +273,13 @@ In [Docker Compose file](docker-compose.yml), [Spring profile](http://docs.sprin
 
 ### Examples
 * `curl http://localhost/gateway/m1/items/123-abc-456`  
-`{"item":"123-abc-456","server":"vachement.net","time":{"millis":1472933106,"text":"2016-09-03T13:05:06-07:00","day":"Sat","week":"35"},"counter":{"name":"m1-service","value":283},"message":"Hi! My name is m1."}`
+`{"item":"123-abc-456","server":"vachement.net","time":{"millis":1473011217,"text":"2016-09-04T10:46:57-07:00","day":"Sun","week":"35"},"counter":{"name":"m1-service","value":268},"instance-counter":{"name":"m1-service-00000156-f64a-32eb-0000-00002a65fe7c","value":267},"message":"Hi! My name is m1."}`
 
 * `curl http://localhost/gateway/m2/items/321-xyz-123`  
-`{"item":"321-xyz-123","server":"vachement.net","time":{"millis":1472933209,"text":"2016-09-03T13:06:49-07:00","day":"Sat","week":"35"},"counter":{"name":"m2-service","value":283},"message":"Hi! My name is m2."}`
+`{"item":"321-xyz-123","server":"vachement.net","time":{"millis":1473011296,"text":"2016-09-04T10:48:16-07:00","day":"Sun","week":"35"},"counter":{"name":"m2-service","value":268},"instance-counter":{"name":"m2-service-00000156-f64a-3d3e-0000-00002a65fe7c","value":266},"message":"Hi! My name is m2."}`
 
 * `curl http://localhost/gateway/m3/counters`  
-`[{"name":"m2-service","value":283},{"name":"m1-service","value":283}]`
+`[{"name":"m1-service-00000156-f64a-32eb-0000-00002a65fe7c","value":267},{"name":"m2-service","value":268},{"name":"m2-service-00000156-f64a-3d3e-0000-00002a65fe7c","value":266},{"name":"m1-service","value":268}]`
 
 ### Images
 ```
