@@ -5,13 +5,13 @@ management:
   context-path: /admin
 
 spring:
+  profiles:
+     active: native
   cloud:
     config:
       server:
         native:
           search-locations: classpath:/shared
-  profiles:
-     active: native
 
 endpoints:
   cors:

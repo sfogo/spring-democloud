@@ -102,7 +102,7 @@ For instance on Ubuntu `sudo /etc/init.d/rabbitmq-server start`
 Installation notes are [here](https://www.rabbitmq.com/download.html).
 * Applications
   * One option is to `cd` to each application and start them individually with `mvn spring-boot:run`, making sure you start with `config-server` (for fail-fast reasons explained in the [overview](#overview)), then on to `eureka` and other applications.
-  * You can use this [run all](run-all.sh) script. It does some _rustic_ waiting and is clueless (other than not starting the next service) about start failures. In a real deployment you rely on options provided by your environment (for instance a combination of Spring `fail fast` and Docker `restart always` options).
+  * You can use this [run all](run-all.sh) script. It does some _rustic_ waiting and is clueless (other than not starting the next service) about start failures. In a real deployment you rely on options provided by your environment (for instance a combination of Spring `fail fast` and Docker `restart always` options).  
 
 ```
 $ ./run-all.sh 
@@ -249,8 +249,7 @@ _(this is possible because all participants [enable CORS](config-server/src/main
 ### Build and run
 * Package all modules  
 `mvn clean package`
-* Enable [Spring Profile](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html#howto-change-configuration-depending-on-the-environment) for Docker  
-`export SPRING_PROFILES_ACTIVE=docker`  
+* In [Docker Compose file](docker-compose.yml), a [Spring Profile](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html#howto-change-configuration-depending-on-the-environment) named `docker` is enabled with environment variable `SPRING_PROFILES_ACTIVE`.  
 Profile values are used in application configuration files (see [example](m1-service/src/main/resources/bootstrap.yml)), enabling configuration properties to be segegrated by [profile](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-profile-specific-properties) to work in different environments (_for instance dev vs. prod_). There are multiple [ways](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html#howto-set-active-spring-profiles) to set a profile active, using an environment variable is just one of them.
 * Build Docker images and start containers  
 `docker-compose -f ./docker-compose.yml up -d --build`

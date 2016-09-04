@@ -1,3 +1,10 @@
+---
+spring:
+  profiles: dev
+  rabbitmq:
+    host: localhost
+    port: 5672
+
 eureka:
   instance:
     prefer-ip-address: true
@@ -12,17 +19,10 @@ endpoints:
     maxAge: 3600
     allowedHeaders: x-requested-with, authorization
 
-spring:
-  rabbitmq:
-    host: localhost
-    port: 5672
-
 ---
 # A separate profile for deploying with Docker
 spring:
-  profiles:
-    active: docker
-
+  profiles: docker
   rabbitmq:
     host: rabbitmq
     port: 5672

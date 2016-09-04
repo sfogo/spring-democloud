@@ -3,8 +3,9 @@
 # =================
 # Globals
 # =================
-STARTED_TAG="Started Application in"
 tmpDir="/tmp/democloud"
+STARTED_TAG="Started Application in"
+export SPRING_PROFILES_ACTIVE=native,dev
 
 # ==================
 # Wait until started

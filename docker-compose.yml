@@ -22,6 +22,8 @@ services:
         max-file: "10"
 
   registry:
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
     build: eureka
     restart: always
     ports:
@@ -32,6 +34,8 @@ services:
         max-file: "10"
 
   gateway:
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
     build: gateway
     restart: always
     ports:
@@ -42,6 +46,8 @@ services:
         max-file: "10"
 
   m3:
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
     build: m3-service
     restart: always
     logging:
@@ -50,6 +56,8 @@ services:
         max-file: "10"
 
   m2:
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
     build: m2-service
     restart: always
     logging:
@@ -58,6 +66,8 @@ services:
         max-file: "10"
 
   m1:
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
     build: m1-service
     restart: always
     logging:
@@ -66,6 +76,8 @@ services:
         max-file: "10"
 
   turbine:
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
     build: turbine
     restart: always
     ports:
@@ -76,6 +88,8 @@ services:
         max-file: "10"
 
   dashboard:
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
     build: dashboard
     restart: always
     ports:

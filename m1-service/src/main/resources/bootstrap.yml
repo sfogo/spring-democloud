@@ -1,4 +1,6 @@
+---
 spring:
+  profiles: dev
   application:
     name: m1-service
   cloud:
@@ -9,9 +11,7 @@ spring:
 ---
 # A separate profile used when deploying with Docker
 spring:
-  profiles:
-    active: docker
-
+  profiles: docker
   application:
     name: m1-service
   cloud:

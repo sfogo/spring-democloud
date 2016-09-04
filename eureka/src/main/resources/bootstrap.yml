@@ -1,6 +1,8 @@
+---
 spring:
   application:
     name: eureka
+  profiles: dev
   cloud:
     config:
       uri: http://localhost:8888
@@ -18,11 +20,9 @@ eureka:
 ---
 # A separate profile used when deploying with Docker
 spring:
-  profiles:
-    active: docker
-
   application:
     name: eureka
+  profiles: docker
   cloud:
     config:
       uri: http://config:8888

@@ -1,4 +1,5 @@
 spring:
+  profiles: dev
   application:
     name: gateway
   cloud:
@@ -9,9 +10,7 @@ spring:
 ---
 # A separate profile used when deploying with Docker
 spring:
-  profiles:
-    active: docker
-
+  profiles: docker
   application:
     name: gateway
   cloud:
