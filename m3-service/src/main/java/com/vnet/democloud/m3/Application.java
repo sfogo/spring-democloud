@@ -50,6 +50,12 @@ public class Application {
         return service.reset(id);
     }
 
+    @RequestMapping(value = "/counters",
+            method = RequestMethod.DELETE)
+    public void deleteAll() {
+        service.resetAll();
+    }
+
     @RequestMapping(value = "/counters/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)

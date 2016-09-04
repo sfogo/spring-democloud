@@ -19,6 +19,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -45,6 +46,9 @@ public class Application {
     @Autowired
     CounterService counterService;
 
+    private final UUID uuid = new UUID(System.currentTimeMillis(),getClass().hashCode());
+    private String getInstanceId() {return appName + "-" + uuid;}
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
@@ -59,6 +63,7 @@ public class Application {
         final Map<String,Object> item = itemService.getItem(demoResource+"/"+id);
 
         item.put("counter", counter);
+        item.put("instance-counter", counterService.nextValue(getInstanceId()));
         item.put("message", demoMessage);
         return item;
     }
@@ -70,6 +75,7 @@ public class Application {
         map.put("message", demoMessage);
         map.put("config.uri", configServer);
         map.put("counter", counterService.getValue(appName));
+        map.put("instance-counter", counterService.getValue(getInstanceId()));
         return map;
     }
 

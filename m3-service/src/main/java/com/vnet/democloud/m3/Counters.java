@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -41,6 +42,11 @@ public class Counters {
         return Counter.map(counter);
     }
 
+    public void resetAll() {
+        logger.info("resetAll");
+        pool.resetAll();
+    }
+
     // ==================
     // Counter Pool
     // ==================
@@ -57,6 +63,11 @@ public class Counters {
         synchronized Collection<Map<String,Object>> collect() {
             // return counters.keySet().stream().map(counters::get).collect(Collectors.toCollection(LinkedList::new));
             return counters.keySet().stream().map(s -> Counter.map(counters.get(s))).collect(Collectors.toCollection(LinkedList::new));
+        }
+        synchronized void resetAll() {
+            for (String key : counters.keySet()) {
+                counters.get(key).reset();
+            }
         }
     }
 }

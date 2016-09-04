@@ -585,3 +585,10 @@ docker ps | grep springdemocloud_m1
 * Eureka view. Note that we now have 2 instances at 2 different Docker network addresses but using the same port while with demo without containers we have 2 localhost instances using different ports.  
 <img src="https://cloud.githubusercontent.com/assets/13286393/18227525/423d4f0a-71dc-11e6-915d-dc6b2cf1e419.png"
      border="0" width="80%" />
+* Curl m1 multiple times and responses come from different instances  
+```
+curl http://localhost/gateway/m1/items/xyz
+{"item":"xyz","server":"vachement.net","time":{"millis":1472947637,"text":"2016-09-03T17:07:17-07:00","day":"Sat","week":"35"},"counter":{"name":"m1-service","value":53},"instance-counter":{"name":"m1-service-00000156-f278-8df3-0000-00002a65fe7c","value":28},"message":"Hi! My name is m1."}
+curl http://localhost/gateway/m1/items/123
+{"item":"123","server":"vachement.net","time":{"millis":1472947644,"text":"2016-09-03T17:07:24-07:00","day":"Sat","week":"35"},"counter":{"name":"m1-service","value":54},"instance-counter":{"name":"m1-service-00000156-f27c-b25f-0000-00002a65fe7c","value":27},"message":"Hi! My name is m1."}
+```
