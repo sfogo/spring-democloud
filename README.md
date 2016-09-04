@@ -303,7 +303,7 @@ docker ps | grep springdemocloud_m1
 6cc07ca3b191  springdemocloud_m1   "java -Xmx200m -jar /"  About an hour ago   Up About an hour
   8091/tcp  springdemocloud_m1_1
 ```
-* Scale by 1  
+* Scale by 1 (make sure you still have SPRING_PROFILES_ACTIVE set so that docker compose picks it up)  
 ```
 docker-compose scale m1=2
 Creating and starting springdemocloud_m1_2 ... done
