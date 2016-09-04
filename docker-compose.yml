@@ -23,7 +23,7 @@ services:
 
   registry:
     environment:
-      SPRING_PROFILES_ACTIVE: docker
+      SPRING_PROFILES_ACTIVE: $SPRING_PROFILES_ACTIVE
     build: eureka
     restart: always
     ports:
@@ -35,7 +35,7 @@ services:
 
   gateway:
     environment:
-      SPRING_PROFILES_ACTIVE: docker
+      SPRING_PROFILES_ACTIVE: $SPRING_PROFILES_ACTIVE
     build: gateway
     restart: always
     ports:
@@ -47,7 +47,7 @@ services:
 
   m3:
     environment:
-      SPRING_PROFILES_ACTIVE: docker
+      SPRING_PROFILES_ACTIVE: $SPRING_PROFILES_ACTIVE
     build: m3-service
     restart: always
     logging:
@@ -57,7 +57,7 @@ services:
 
   m2:
     environment:
-      SPRING_PROFILES_ACTIVE: docker
+      SPRING_PROFILES_ACTIVE: $SPRING_PROFILES_ACTIVE
     build: m2-service
     restart: always
     logging:
@@ -67,7 +67,7 @@ services:
 
   m1:
     environment:
-      SPRING_PROFILES_ACTIVE: docker
+      SPRING_PROFILES_ACTIVE: $SPRING_PROFILES_ACTIVE
     build: m1-service
     restart: always
     logging:
@@ -77,7 +77,7 @@ services:
 
   turbine:
     environment:
-      SPRING_PROFILES_ACTIVE: docker
+      SPRING_PROFILES_ACTIVE: $SPRING_PROFILES_ACTIVE
     build: turbine
     restart: always
     ports:
@@ -89,7 +89,7 @@ services:
 
   dashboard:
     environment:
-      SPRING_PROFILES_ACTIVE: docker
+      SPRING_PROFILES_ACTIVE: $SPRING_PROFILES_ACTIVE
     build: dashboard
     restart: always
     ports:

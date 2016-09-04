@@ -249,6 +249,8 @@ _(this is possible because all participants [enable CORS](config-server/src/main
 ### Build and run
 * Package all modules  
 `mvn clean package`  
+Set `SPRING_PROFILES_ACTIVE` environment variable to select `docker` profile  
+`export SPRING_PROFILES_ACTIVE=docker`  
 Build Docker images and start containers  
 `docker-compose -f ./docker-compose.yml up -d --build`  
 
