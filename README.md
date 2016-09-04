@@ -248,10 +248,10 @@ _(this is possible because all participants [enable CORS](config-server/src/main
 ## Run in Docker containers
 ### Build and run
 * Package all modules  
-`mvn clean package`
-* Build Docker images and start containers  
+`mvn clean package`  
+Build Docker images and start containers  
 `docker-compose -f ./docker-compose.yml up -d --build`  
-It may take a few minutes before everything is up and runnig.
+It may take a few minutes before everything is up and running.
 
 * In [Docker Compose file](docker-compose.yml), [Spring profile](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html#howto-change-configuration-depending-on-the-environment) named `docker` is enabled with environment variable `SPRING_PROFILES_ACTIVE`.  
 Profile values are used in application configuration files (see [example](m1-service/src/main/resources/bootstrap.yml)), enabling configuration properties to be segegrated by [profile](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-profile-specific-properties) to work in different environments (_for instance dev vs. prod_). There are multiple [ways](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html#howto-set-active-spring-profiles) to set a profile active, using an environment variable is just one of them.
