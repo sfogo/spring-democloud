@@ -1,18 +1,18 @@
 spring:
-  profiles: dev
   application:
     name: gateway
+
+---
+spring:
+  profiles: dev
   cloud:
     config:
       uri: http://localhost:8888
       fail-fast: true
 
 ---
-# A separate profile used when deploying with Docker
 spring:
   profiles: docker
-  application:
-    name: gateway
   cloud:
     config:
       uri: http://config:8888

@@ -1,7 +1,10 @@
 spring:
-  profiles: dev
   application:
     name: dashboard
+
+---
+spring:
+  profiles: dev
   cloud:
     config:
       uri: http://localhost:8888
@@ -11,8 +14,6 @@ spring:
 # A separate profile used when deploying with Docker
 spring:
   profiles: docker
-  application:
-    name: dashboard
   cloud:
     config:
       uri: http://config:8888

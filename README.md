@@ -137,8 +137,8 @@ You can shut it all down with : kill `cat /tmp/democloud/pids.txt`
 
 ### Configuration Server
 * REST endpoints are available:
-  * `http://localhost:8888/m1-service/active/master`
-  * `http://localhost:8888/gateway/active/master`
+  * `http://localhost:8888/m1-service/dev` to view M1 `dev` profile
+  * `http://localhost:8888/m1-service/docker` to view M1 `docker` profile
   * See [nomenclature](http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html#_locating_remote_configuration_resources)
 
 ### Dashboard
