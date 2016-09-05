@@ -281,6 +281,9 @@ In [Docker Compose file](docker-compose.yml), [Spring profile](http://docs.sprin
 * `curl http://localhost/gateway/m3/counters`  
 `[{"name":"m1-service-00000156-f64a-32eb-0000-00002a65fe7c","value":267},{"name":"m2-service","value":268},{"name":"m2-service-00000156-f64a-3d3e-0000-00002a65fe7c","value":266},{"name":"m1-service","value":268}]`
 
+* Generate some traffic  
+`./generate-traffic.py 91 -docker`
+
 ### Images
 ```
 docker images
