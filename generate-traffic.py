@@ -13,15 +13,15 @@ m2ItemsPath = "/gateway/m2/items"
 # =====================
 # Generate Traffic
 # =====================
-def feed(count, gateway):
+def feed(count, host):
     for e in range(0, count):
-        get_resource(gateway, m1ItemsPath, "m1-" + str(e))
-        time.sleep(minDelay + (0.001 * random.randint(0,100)))
-        get_resource(gateway, m2ItemsPath, "m2-" + str(e))
-        time.sleep(minDelay + (0.001 * random.randint(0,100)))
+        get_resource(host, m1ItemsPath, "m1-" + str(e))
+        time.sleep(minDelay + (0.001 * random.randint(0, 100)))
+        get_resource(host, m2ItemsPath, "m2-" + str(e))
+        time.sleep(minDelay + (0.001 * random.randint(0, 100)))
         if e % 7 == 0:
-            get_resource(gateway, m1ItemsPath, "x%20y")
-            get_resource(gateway, m2ItemsPath, "z%20t")
+            get_resource(host, m1ItemsPath, "x%20y")
+            get_resource(host, m2ItemsPath, "z%20t")
 
 
 # =====================
@@ -44,7 +44,7 @@ argc = len(sys.argv)
 if argc >= 2:
     random.seed()
     gateway = "localhost:8099"
-    if argc >= 3 and "-docker"==sys.argv[2]:
+    if argc >= 3 and "-docker" == sys.argv[2]:
         gateway = "localhost"
     feed(int(sys.argv[1]), gateway)
 else:
