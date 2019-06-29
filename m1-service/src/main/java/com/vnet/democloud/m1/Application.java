@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,10 +41,10 @@ public class Application {
     String appName;
 
     @Autowired
-    Items itemService;
+    private Items itemService;
 
     @Autowired
-    CounterService counterService;
+    private CounterService counterService;
 
     private final UUID uuid = new UUID(System.currentTimeMillis(),getClass().hashCode());
     private String getInstanceId() {return appName + "-" + uuid;}

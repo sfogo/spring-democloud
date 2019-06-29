@@ -3,7 +3,9 @@
 # =================
 # Globals
 # =================
-tmpDir="/tmp/democloud"
+tmpDir=/tmp/democloud
+mkdir -p ${tmpDir}
+
 STARTED_TAG="Started Application in"
 export SPRING_PROFILES_ACTIVE=native,dev
 
@@ -23,15 +25,15 @@ waitUntilStartedTag() {
 # Start Application
 # =================
 startApplication() {
-    local app=${1}
+    local app=$1
+    local logFile=${tmpDir}/log.${app}.txt
     cd ${app}
 
     echo "Starting ${app}..."
-    mvn spring-boot:run > ${tmpDir}/${app}.pid.${BASHPID}.txt 2>&1 &
+    mvn spring-boot:run > ${logFile} 2>&1 &
     pid=$!
     echo "${pid} " >> ${tmpDir}/pids.txt
 
-    logFile="${tmpDir}/${app}.pid.${pid}.txt"
     waitUntilStartedTag "${logFile}"
     echo "${app} started PID:${pid} Log:${logFile}"
 

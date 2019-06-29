@@ -21,10 +21,10 @@ import java.util.Map;
 public class Application {
 
     @Value("${demo.message}")
-    String message = "Welcome!";
+    private String message = "Welcome!";
 
     @Value("${spring.cloud.config.uri}")
-    String configServer;
+    private String configServer;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

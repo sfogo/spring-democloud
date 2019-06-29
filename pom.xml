@@ -3,10 +3,95 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.vnet.democloud</groupId>
-    <artifactId>democloud</artifactId>
+    <artifactId>parent</artifactId>
     <version>0.1.0</version>
     <packaging>pom</packaging>
-    <name>democloud</name>
+    <name>demo-cloud-parent</name>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.6.RELEASE</version>
+    </parent>
+
+    <properties>
+        <org.springframework.cloud.zuul.version>1.4.7.RELEASE</org.springframework.cloud.zuul.version>
+        <org.springframework.cloud.eureka.version>1.4.7.RELEASE</org.springframework.cloud.eureka.version>
+        <org.springframework.cloud.turbine.version>1.4.7.RELEASE</org.springframework.cloud.turbine.version>
+        <org.springframework.cloud.hystrix.version>1.4.7.RELEASE</org.springframework.cloud.hystrix.version>
+        <org.springframework.cloud.openfeign.version>2.1.2.RELEASE</org.springframework.cloud.openfeign.version>
+        <org.springframework.cloud.config.version>2.1.3.RELEASE</org.springframework.cloud.config.version>
+        <org.springframework.cloud.rabbit.version>2.2.0.RELEASE</org.springframework.cloud.rabbit.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Greenwich.SR2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-config</artifactId>
+                <version>${org.springframework.cloud.config.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-eureka</artifactId>
+                <version>${org.springframework.cloud.eureka.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-eureka-server</artifactId>
+                <version>${org.springframework.cloud.eureka.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-turbine-stream</artifactId>
+                <version>${org.springframework.cloud.turbine.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-zuul</artifactId>
+                <version>${org.springframework.cloud.zuul.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-hystrix</artifactId>
+                <version>${org.springframework.cloud.hystrix.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
+                <version>${org.springframework.cloud.hystrix.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${org.springframework.cloud.openfeign.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+                <version>${org.springframework.cloud.rabbit.version}</version>
+            </dependency>
+
+
+        </dependencies>
+    </dependencyManagement>
 
     <modules>
         <module>config-server</module>

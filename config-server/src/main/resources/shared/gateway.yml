@@ -1,5 +1,6 @@
 server:
-  contextPath: /gateway
+  servlet:
+    contextPath: /gateway
   port: 8099
 
 demo:
